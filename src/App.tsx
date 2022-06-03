@@ -1,13 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './App.scss';
 import WorkTile from './components/WorkTile';
+import Highlights from './components/Highlights';
 
 const gameData: any = {
   id: 1,
-  composer: {
-    surname: 'Bach',
-    firstName: 'Johann Sebastian',
-  },
+  answer: 'Bach, Johann Sebastian',
   works: [
     {
       title: 'Matthäus Passion (BWV 244) - Erbarme Dich',
@@ -36,6 +34,7 @@ function App() {
       {gameData.works.map((work: any, idx: number) => {
         return <WorkTile work={work} idx={idx} />;
       })}
+      <Highlights />
     </div>
   );
 }

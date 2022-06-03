@@ -41,7 +41,6 @@ body {
   text-align: center;
 }
 
-
 .work-tile {
   width: 100%;
   // height: 2em;
@@ -51,6 +50,14 @@ body {
     background-color: red;
     width: 0%;
     height: 2em;
-    transition-timing-function: "linear"
+    transition-timing-function: 'linear';
   }
+}
+
+.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 0;
+}
+
+.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 0;
 }
