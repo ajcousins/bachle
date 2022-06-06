@@ -1,62 +1,78 @@
-import React, {SetStateAction} from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
-// import InputUnstyled from '@mui/base/InputUnstyled'
 import Autocomplete from '@mui/material/Autocomplete';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 import { composers } from '../data/composers';
 
 interface IProps {
-  curUserAnswer: string;
-  setCurUserAnswer: React.Dispatch<SetStateAction<string>>;
+  handleAnswer: (answer: string) => void;
 }
 
-export default function AnswerInput({curUserAnswer, setCurUserAnswer}:IProps) {
+export default function AnswerInput({ handleAnswer }: IProps) {
+  const [curInput, setCurInput] = useState('');
+  const [autocompleteKey, setAutocompleteKey] = useState(0);
 
-  const handleChange = (e:any) => {
-    console.log("change");
-    
-    console.log("e.target.value:", e.target.value);
-    console.log("e:", e);
-  }
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (e.target[0].value === '') return;
+
+    // submit answer to handler
+    handleAnswer(e.target[0].value);
+
+    // clear text input
+    setCurInput('');
+    setAutocompleteKey(autocompleteKey + 1);
+  };
 
   return (
     <div className="text-field-wrapper">
-      <Autocomplete
-        id="highlights-demo"
-        // sx={{ width: 300 }}
-        
-        freeSolo
-        fullWidth
-        options={composers}
-        getOptionLabel={(option) => {
-          if (typeof option === 'string' || option instanceof String) return '';
-          else return option.name;
-        }}
-        renderInput={(params) => <TextField {...params} margin="normal" onChange={handleChange}/>}
-        renderOption={(props, option, { inputValue }) => {
-          const matches = match(option.name, inputValue);
-          const parts = parse(option.name, matches);
+      <form onSubmit={handleSubmit}>
+        <Autocomplete
+          id="highlights-demo"
+          key={autocompleteKey}
+          fullWidth
+          options={composers}
+          getOptionLabel={(option) => {
+            if (typeof option === 'string' || option instanceof String)
+              return '';
+            else return option.name;
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              margin="normal"
+              onChange={(e) => {
+                setCurInput(e.target.value);
+              }}
+              value={curInput}
+            />
+          )}
+          renderOption={(props, option, { inputValue }) => {
+            const matches = match(option.name, inputValue);
+            const parts = parse(option.name, matches);
 
-          if (inputValue.length < 1) return null;
-          return (
-            <li {...props}>
-              <div>
-                {parts.map((part, index) => (
-                  <span
-                    key={index}
-                    style={{
-                      backgroundColor: part.highlight ? 'yellow' : '',
-                    }}
-                  >
-                    {part.text}
-                  </span>
-                ))}
-              </div>
-            </li>
-          );
-        }}
-      />
+            if (inputValue.length < 1) return null;
+            return (
+              <li {...props}>
+                <div>
+                  {parts.map((part, index) => (
+                    <span
+                      key={index}
+                      style={{
+                        backgroundColor: part.highlight ? 'yellow' : '',
+                      }}
+                    >
+                      {part.text}
+                    </span>
+                  ))}
+                </div>
+              </li>
+            );
+          }}
+        />
+        <button type="submit">Form Submit</button>
+      </form>
     </div>
   );
 }

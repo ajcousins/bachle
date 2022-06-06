@@ -7,7 +7,7 @@ const GAMEDAY_ID = 5;
 
 const gameData: any = {
   id: 1,
-  answer: 'Bach, Johann Sebastian',
+  answer: 'Johann Sebastian Bach',
   works: [
     {
       title: 'Matthäus Passion (BWV 244) - Erbarme Dich',
@@ -32,7 +32,6 @@ const gameData: any = {
 
 function App() {
   const [userStats, setUserStats] = useState<Stat | undefined>();
-  const [curUserAnswer, setCurUserAnswer] = useState<string>("");
 
   // On app first load: Check local storage. Set userStats.
   useEffect(() => {
@@ -81,22 +80,18 @@ function App() {
     const update = { ...userStats };
 
     update.guessList.push('test');
-    setUserStats(update)
+    setUserStats(update);
   };
 
-  const handleSubmit = () => {
-    console.log('handle submit');
-    if (!userStats) return;
+  const handleAnswer = (answer: string) => {
+    console.log('user answers:', answer);
 
-    // is correct?
-    // if (userStats)
-
-
-
-    // const update = { ...userStats };
-
-    // update.guessList.push('test');
-    // setUserStats(update)
+    if (answer === gameData.answer) {
+      console.log("Correct!");
+    } else {
+      console.log("Not Correct.");
+      
+    }
   };
 
   return (
@@ -104,9 +99,8 @@ function App() {
       {gameData.works.map((work: any, idx: number) => {
         return <WorkTile work={work} idx={idx} />;
       })}
-      <AnswerInput curUserAnswer={curUserAnswer} setCurUserAnswer={setCurUserAnswer}/>
+      <AnswerInput handleAnswer={handleAnswer} />
       <button onClick={handleUpdate}>Update</button>
-      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
