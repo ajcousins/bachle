@@ -74,24 +74,38 @@ function App() {
     localStorage.setItem('userStats', JSON.stringify(history));
   }, [userStats]);
 
-  const handleUpdate = () => {
-    console.log('handle update');
+  // const handleUpdate = () => {
+  //   console.log('handle update');
+  //   if (!userStats) return;
+  //   const update = { ...userStats };
+
+  //   update.guessList.push('test');
+  //   setUserStats(update);
+  // };
+
+  const updateGuessList = (guess:any) => {
     if (!userStats) return;
     const update = { ...userStats };
-
-    update.guessList.push('test');
+    update.guessList.push(guess);
     setUserStats(update);
   };
 
-  const handleAnswer = (answer: string) => {
-    console.log('user answers:', answer);
+  const handleAnswer = (answer: string, skipped?: boolean) => {
+    const guess = {
+      answer: answer,
+      isCorrect: false,
+      isSkipped: false,
+    }
 
     if (answer === gameData.answer) {
-      console.log("Correct!");
-    } else {
-      console.log("Not Correct.");
-      
+      guess.isCorrect = true;
     }
+
+    if (skipped) {
+      guess.isSkipped = true;
+    }
+    
+    updateGuessList(guess);
   };
 
   return (
@@ -100,7 +114,7 @@ function App() {
         return <WorkTile work={work} idx={idx} />;
       })}
       <AnswerInput handleAnswer={handleAnswer} />
-      <button onClick={handleUpdate}>Update</button>
+      {/* <button onClick={handleUpdate}>Update</button> */}
     </div>
   );
 }

@@ -6,7 +6,7 @@ import match from 'autosuggest-highlight/match';
 import { composers } from '../data/composers';
 
 interface IProps {
-  handleAnswer: (answer: string) => void;
+  handleAnswer: (answer: string, skipped?: boolean) => void;
 }
 
 export default function AnswerInput({ handleAnswer }: IProps) {
@@ -24,6 +24,18 @@ export default function AnswerInput({ handleAnswer }: IProps) {
     setCurInput('');
     setAutocompleteKey(autocompleteKey + 1);
   };
+
+  const handleSkip = (e: any) => {
+    console.log("skip");
+    
+    // submit answer to handler
+    handleAnswer("", true);
+
+    // clear text input
+    setCurInput('');
+    setAutocompleteKey(autocompleteKey + 1);
+
+  }
 
   return (
     <div className="text-field-wrapper">
@@ -71,7 +83,8 @@ export default function AnswerInput({ handleAnswer }: IProps) {
             );
           }}
         />
-        <button type="submit">Form Submit</button>
+        <button type="button" onClick={handleSkip}>Skip</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
