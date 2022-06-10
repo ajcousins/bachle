@@ -32,6 +32,14 @@ const gameData: any = {
 
 function App() {
   const [userStats, setUserStats] = useState<Stat | undefined>();
+  const [worksPlaying, setWorksPlaying] = useState(() =>
+    gameData.works.map(() => ({ isPlaying: false }))
+  );
+
+  useEffect(() => {
+    console.log("worksPlaying:", worksPlaying);
+    
+  }, [worksPlaying])
 
   // On app first load: Check local storage. Set userStats.
   useEffect(() => {
@@ -60,6 +68,7 @@ function App() {
       localStorage.setItem('userStats', JSON.stringify(history));
     }
     setUserStats(history[idx]);
+    console.log('worksPlaying:', worksPlaying);
   }, []);
 
   // update localstorage whenever userStats state updates
@@ -74,16 +83,7 @@ function App() {
     localStorage.setItem('userStats', JSON.stringify(history));
   }, [userStats]);
 
-  // const handleUpdate = () => {
-  //   console.log('handle update');
-  //   if (!userStats) return;
-  //   const update = { ...userStats };
-
-  //   update.guessList.push('test');
-  //   setUserStats(update);
-  // };
-
-  const updateGuessList = (guess:any) => {
+  const updateGuessList = (guess: any) => {
     if (!userStats) return;
     const update = { ...userStats };
     update.guessList.push(guess);
@@ -95,7 +95,7 @@ function App() {
       answer: answer,
       isCorrect: false,
       isSkipped: false,
-    }
+    };
 
     if (answer === gameData.answer) {
       guess.isCorrect = true;
@@ -104,17 +104,16 @@ function App() {
     if (skipped) {
       guess.isSkipped = true;
     }
-    
+
     updateGuessList(guess);
   };
 
   return (
     <div className="App">
       {gameData.works.map((work: any, idx: number) => {
-        return <WorkTile work={work} idx={idx} />;
+        return <WorkTile work={work} idx={idx} worksPlaying={worksPlaying} setWorksPlaying={setWorksPlaying} />;
       })}
       <AnswerInput handleAnswer={handleAnswer} />
-      {/* <button onClick={handleUpdate}>Update</button> */}
     </div>
   );
 }

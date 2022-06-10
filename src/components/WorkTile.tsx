@@ -4,33 +4,42 @@ import { SC } from '../scripts/soundcloud';
 interface IProps {
   work: any;
   idx: number;
+  worksPlaying: { isPlaying: boolean }[];
+  setWorksPlaying: React.Dispatch<any>;
 }
 
-export default function WorkTile({ work, idx }: IProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
+export default function WorkTile({
+  work,
+  idx,
+  worksPlaying,
+  setWorksPlaying,
+}: IProps) {
+  const setIsPlaying = (playing: boolean, idx: number) => {
+    const worksPlayingCopy = worksPlaying.map(() => ({ isPlaying: false }));
+    worksPlayingCopy.splice(idx, 1, { isPlaying: playing });
+    setWorksPlaying(worksPlayingCopy);
+  };
 
   const handleClick = () => {
     const widget = document.querySelector(`#work${idx}`);
     const widget1 = SC.Widget(widget);
 
-    if (!isPlaying) {
-      // TO DO: stop all other works from playing
+    if (!worksPlaying[idx].isPlaying) {
       widget1.seekTo(work.startTime * 1000);
       widget1.play();
-      setIsPlaying(true);
+      setIsPlaying(true, idx);
 
       widget1.bind(SC.Widget.Events.PLAY_PROGRESS, () => {
         widget1.getPosition((e: any) => {
-          console.log('pos:', e);
           if (e > (work.startTime + work.duration) * 1000) {
             widget1.pause();
-            setIsPlaying(false);
+            setIsPlaying(false, idx);
           }
         });
       });
     } else {
       widget1.pause();
-      setIsPlaying(false);
+      setIsPlaying(false, idx);
     }
   };
 
@@ -50,16 +59,14 @@ export default function WorkTile({ work, idx }: IProps) {
       <button onClick={handleClick}>Play</button>
       <div
         className="work-tile__progress-bar"
-        style={isPlaying ? progressing : stopped}
+        style={worksPlaying[idx].isPlaying ? progressing : stopped}
       />
       <iframe
-        // width="100%"
-        // height="166"
-        // scrolling="no"
         allow="autoplay"
         title="widget"
         style={{ display: 'none' }}
         id={`work${idx}`}
+        className="all-widgets"
         src={`https://w.soundcloud.com/player/?url=${work.url}`}
       />
     </div>
