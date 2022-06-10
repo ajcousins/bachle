@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SC } from '../scripts/soundcloud';
 
 interface IProps {
@@ -55,11 +55,11 @@ export default function WorkTile({
   };
 
   return (
-    <div className="work-tile">
-      <button onClick={handleClick}>Play</button>
+    <div className="work-tile" onClick={handleClick}>
       <div
         className="work-tile__progress-bar"
         style={worksPlaying[idx].isPlaying ? progressing : stopped}
+        
       />
       <iframe
         allow="autoplay"
