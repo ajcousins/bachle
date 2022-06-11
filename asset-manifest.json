@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bachle/static/css/main.02135a4c.css",
+    "main.js": "/bachle/static/js/main.499774f2.js",
+    "static/js/787.be450006.chunk.js": "/bachle/static/js/787.be450006.chunk.js",
+    "index.html": "/bachle/index.html",
+    "main.02135a4c.css.map": "/bachle/static/css/main.02135a4c.css.map",
+    "main.499774f2.js.map": "/bachle/static/js/main.499774f2.js.map",
+    "787.be450006.chunk.js.map": "/bachle/static/js/787.be450006.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.02135a4c.css",
+    "static/js/main.499774f2.js"
+  ]
+}
