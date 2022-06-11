@@ -29,6 +29,9 @@ blockquote,
 dl,
 dd {
   margin: 0;
+}
+
+h1 {
   font-family: 'Playfair Display', serif;
 }
 
@@ -40,16 +43,26 @@ body {
   line-height: 1.5;
 }
 
+/* MUI classes */
+.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 0;
+}
+
+.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 0;
+}
+
+/* App classes */
 .App {
   text-align: center;
 }
 
 .work-tile {
   width: 100%;
-  // height: 2em;
-  background-color: #F2CFD5;
+  background-color: #f2cfd5;
   margin-bottom: 1em;
   cursor: pointer;
+  position: relative;
   &__progress-bar {
     background-color: red;
     width: 0%;
@@ -58,10 +71,11 @@ body {
   }
 }
 
-.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
-  border-radius: 0;
-}
-
-.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
-  border-radius: 0;
+.play-svg {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin-top: 12px;
+  margin-left: 4px;
 }

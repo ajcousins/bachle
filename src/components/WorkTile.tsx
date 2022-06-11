@@ -1,4 +1,5 @@
 import React from 'react';
+import BachlePlay from '../assets/BachlePlay';
 import { SC } from '../scripts/soundcloud';
 
 interface IProps {
@@ -59,8 +60,8 @@ export default function WorkTile({
       <div
         className="work-tile__progress-bar"
         style={worksPlaying[idx].isPlaying ? progressing : stopped}
-        
       />
+      <BachlePlay />
       <iframe
         allow="autoplay"
         title="widget"
