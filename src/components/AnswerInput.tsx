@@ -82,7 +82,8 @@ export default function AnswerInput({ handleAnswer, playingControl, handleReset 
                     <span
                       key={index}
                       style={{
-                        backgroundColor: part.highlight ? '#f2cfd5' : '',
+                        backgroundColor: part.highlight ? '#aaaaaa' : '',
+                        color: part.highlight ? '#ffffff' : ''
                       }}
                     >
                       {part.text}
@@ -93,11 +94,13 @@ export default function AnswerInput({ handleAnswer, playingControl, handleReset 
             );
           }}
         />
-        <button type="button" onClick={handleSkip}>
-          Skip
+        <div className='bottom-bar'>
+        <button className='btn-mid' type="button" onClick={handleSkip}>
+          SKIP
         </button>
-        <button onClick={handleReset}>Reset State</button>
-        <button type="submit">Submit</button>
+        <button className='btn-mid' type="button" onClick={handleReset}>RESET</button>
+        <button className='btn-full' type="submit">SUBMIT</button>
+        </div>
       </form>
   );
 }

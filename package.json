@@ -1,6 +1,7 @@
 {
   "name": "bachle",
   "version": "0.1.0",
+  "homepage": "https://ajcousins.github.io/bachle",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
@@ -25,7 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "@types/autosuggest-highlight": "^3.2.0"
+    "@types/autosuggest-highlight": "^3.2.0",
+    "gh-pages": "^4.0.0"
   }
 }
