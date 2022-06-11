@@ -4,10 +4,24 @@ import AnswerInput from './AnswerInput';
 
 const GAMEDAY_ID = 5;
 
+// 
+
 const gameData: any = {
   id: 1,
   answer: 'Johann Sebastian Bach',
   works: [
+    {
+      title: 'Prelude in C Major',
+      url: 'https://soundcloud.com/leotheelion/bach-prelude-in-c-major?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+      startTime: 0,
+      duration: 10,
+    },
+    {
+      title: 'Air on the G string',
+      url: 'https://soundcloud.com/the-anatra-string-quartet/bach-air-on-the-g-string?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+      startTime: 20,
+      duration: 10,
+    },
     {
       title: 'Matthäus Passion (BWV 244) - Erbarme Dich',
       url: 'https://soundcloud.com/pensatore/002-johann-sebastian-bach-matthaus-passion-bwv-244-erbarme-dich?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
