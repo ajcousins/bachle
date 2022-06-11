@@ -7,13 +7,15 @@ import { composers } from '../data/composers';
 
 interface IProps {
   handleAnswer: (answer: string, skipped?: boolean) => void;
+  playingControl: any;
 }
 
-export default function AnswerInput({ handleAnswer }: IProps) {
+export default function AnswerInput({ handleAnswer, playingControl }: IProps) {
   const [curInput, setCurInput] = useState('');
   const [autocompleteKey, setAutocompleteKey] = useState(0);
 
   const handleSubmit = (e: any) => {
+    stopPlayingTracks();
     e.preventDefault();
     if (e.target[0].value === '') return;
 
@@ -26,15 +28,20 @@ export default function AnswerInput({ handleAnswer }: IProps) {
   };
 
   const handleSkip = (e: any) => {
-    console.log("skip");
-    
+    stopPlayingTracks();
+    console.log('skip');
+
     // submit answer to handler
-    handleAnswer("", true);
+    handleAnswer('', true);
 
     // clear text input
     setCurInput('');
     setAutocompleteKey(autocompleteKey + 1);
+  };
 
+  const stopPlayingTracks = () => {
+    const worksPlayingCopy = playingControl.worksPlaying.map(() => ({ isPlaying: false }));
+    playingControl.setWorksPlaying(worksPlayingCopy);
   }
 
   return (
@@ -53,6 +60,7 @@ export default function AnswerInput({ handleAnswer }: IProps) {
           renderInput={(params) => (
             <TextField
               {...params}
+              placeholder="Know the composer?"
               margin="normal"
               onChange={(e) => {
                 setCurInput(e.target.value);
@@ -72,7 +80,7 @@ export default function AnswerInput({ handleAnswer }: IProps) {
                     <span
                       key={index}
                       style={{
-                        backgroundColor: part.highlight ? 'yellow' : '',
+                        backgroundColor: part.highlight ? '#f2cfd5' : '',
                       }}
                     >
                       {part.text}
@@ -83,7 +91,9 @@ export default function AnswerInput({ handleAnswer }: IProps) {
             );
           }}
         />
-        <button type="button" onClick={handleSkip}>Skip</button>
+        <button type="button" onClick={handleSkip}>
+          Skip
+        </button>
         <button type="submit">Submit</button>
       </form>
     </div>

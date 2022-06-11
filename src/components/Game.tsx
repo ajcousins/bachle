@@ -34,10 +34,7 @@ export default function Game() {
   const [worksPlaying, setWorksPlaying] = useState(() =>
     gameData.works.map(() => ({ isPlaying: false }))
   );
-
-  useEffect(() => {
-    console.log('worksPlaying:', worksPlaying);
-  }, [worksPlaying]);
+  const [resetState, setResetState] = useState(0);
 
   // On app first load: Check local storage. Set userStats.
   useEffect(() => {
@@ -66,9 +63,8 @@ export default function Game() {
       localStorage.setItem('userStats', JSON.stringify(history));
     }
     setUserStats(history[idx]);
-    console.log('worksPlaying:', worksPlaying);
     // eslint-disable-next-line
-  }, []);
+  }, [resetState]);
 
   // update localstorage whenever userStats state updates
   useEffect(() => {
@@ -107,6 +103,12 @@ export default function Game() {
     updateGuessList(guess);
   };
 
+  const handleReset = () => {
+    localStorage.removeItem('userStats');
+    setUserStats(undefined);
+    setResetState(resetState + 1);
+  };
+
   return (
     <div>
       {gameData.works.map((work: any, idx: number) => {
@@ -115,12 +117,14 @@ export default function Game() {
             key={idx}
             work={work}
             idx={idx}
+            userStats={userStats}
             worksPlaying={worksPlaying}
             setWorksPlaying={setWorksPlaying}
           />
         );
       })}
-      <AnswerInput handleAnswer={handleAnswer} />
+      <AnswerInput handleAnswer={handleAnswer} playingControl={{worksPlaying, setWorksPlaying}}/>
+      <button onClick={handleReset}>Reset State</button>
     </div>
   );
 }
