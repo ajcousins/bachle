@@ -8,9 +8,10 @@ import { composers } from '../data/composers';
 interface IProps {
   handleAnswer: (answer: string, skipped?: boolean) => void;
   playingControl: any;
+  handleReset: any;
 }
 
-export default function AnswerInput({ handleAnswer, playingControl }: IProps) {
+export default function AnswerInput({ handleAnswer, playingControl, handleReset }: IProps) {
   const [curInput, setCurInput] = useState('');
   const [autocompleteKey, setAutocompleteKey] = useState(0);
 
@@ -43,10 +44,11 @@ export default function AnswerInput({ handleAnswer, playingControl }: IProps) {
     const worksPlayingCopy = playingControl.worksPlaying.map(() => ({ isPlaying: false }));
     playingControl.setWorksPlaying(worksPlayingCopy);
   }
+  
 
   return (
-    <div className="text-field-wrapper">
-      <form onSubmit={handleSubmit}>
+
+      <form className="answer-input" onSubmit={handleSubmit}>
         <Autocomplete
           id="highlights-demo"
           key={autocompleteKey}
@@ -94,8 +96,8 @@ export default function AnswerInput({ handleAnswer, playingControl }: IProps) {
         <button type="button" onClick={handleSkip}>
           Skip
         </button>
+        <button onClick={handleReset}>Reset State</button>
         <button type="submit">Submit</button>
       </form>
-    </div>
   );
 }

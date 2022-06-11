@@ -110,7 +110,7 @@ export default function Game() {
   };
 
   return (
-    <div>
+    <>
       {gameData.works.map((work: any, idx: number) => {
         return (
           <WorkTile
@@ -123,8 +123,8 @@ export default function Game() {
           />
         );
       })}
-      <AnswerInput handleAnswer={handleAnswer} playingControl={{worksPlaying, setWorksPlaying}}/>
-      <button onClick={handleReset}>Reset State</button>
-    </div>
+      <AnswerInput handleAnswer={handleAnswer} playingControl={{worksPlaying, setWorksPlaying}} handleReset={handleReset}/>
+      
+    </>
   );
 }
