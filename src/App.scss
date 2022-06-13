@@ -1,3 +1,7 @@
+$mid-grey: #aaaaaa;
+$dark: #111111;
+$primary: #ff55ff;
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap');
 
 /* Box sizing rules */
@@ -61,6 +65,10 @@ body {
   line-height: 1.5;
 }
 
+button {
+  font-size: 16px;
+}
+
 /* MUI classes */
 .MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
   border-radius: 0;
@@ -75,7 +83,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  // height: 100%;
   margin: 0 0.75em;
 }
 
@@ -99,12 +107,12 @@ body {
 .work-tile {
   &__active {
     width: 100%;
-    background-color: #aaaaaa;
-    margin-bottom: 1em;
+    background-color: $dark;
+    margin-bottom: 0.5em;
     cursor: pointer;
     position: relative;
     &__progress-bar {
-      background-color: #000000;
+      background-color: $primary;
       width: 0%;
       height: 3em;
       transition-timing-function: 'linear';
@@ -113,8 +121,8 @@ body {
   &__inactive {
     width: 100%;
     height: 3em;
-    margin-bottom: 1em;
-    border: 1px solid #000000;
+    margin-bottom: 0.5em;
+    border: 1px solid $mid-grey;
   }
   &__text {
     position: absolute;
@@ -142,13 +150,19 @@ body {
 }
 
 .answer-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   margin-top: auto;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
   padding-bottom: 1em;
-  position: fixed;
-  bottom: 0;
   width: 100%;
+  // padding-left: 0.75em;
+  // padding-right: 0.75em;
+  // position: fixed;
+  // bottom: 0;
+  height: 17em;
+  overflow: hidden;
+  // background-color: #ffffaa;
 }
 
 .bottom-bar {
@@ -159,15 +173,15 @@ body {
 
 button {
   border: none;
-  padding: 1em 2em;
+  padding: 0.8em 1.6em;
   color: white;
   letter-spacing: 2px;
   font-weight: 500;
   cursor: pointer;
   &.btn-mid {
-    background-color: #aaaaaa;
+    background-color: $dark;
   }
   &.btn-full {
-    background-color: #000000;
+    background-color: $primary;
   }
 }

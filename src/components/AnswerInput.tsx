@@ -11,7 +11,11 @@ interface IProps {
   handleReset: any;
 }
 
-export default function AnswerInput({ handleAnswer, playingControl, handleReset }: IProps) {
+export default function AnswerInput({
+  handleAnswer,
+  playingControl,
+  handleReset,
+}: IProps) {
   const [curInput, setCurInput] = useState('');
   const [autocompleteKey, setAutocompleteKey] = useState(0);
 
@@ -41,10 +45,11 @@ export default function AnswerInput({ handleAnswer, playingControl, handleReset 
   };
 
   const stopPlayingTracks = () => {
-    const worksPlayingCopy = playingControl.worksPlaying.map(() => ({ isPlaying: false }));
+    const worksPlayingCopy = playingControl.worksPlaying.map(() => ({
+      isPlaying: false,
+    }));
     playingControl.setWorksPlaying(worksPlayingCopy);
-  }
-  
+  };
 
   return (
 
@@ -82,8 +87,9 @@ export default function AnswerInput({ handleAnswer, playingControl, handleReset 
                     <span
                       key={index}
                       style={{
-                        backgroundColor: part.highlight ? '#aaaaaa' : '',
-                        color: part.highlight ? '#ffffff' : ''
+                        backgroundColor: part.highlight ? '#ff55ff' : '',
+                        color: part.highlight ? '#ffffff' : '',
+                        padding: '0.4em 0.1em',
                       }}
                     >
                       {part.text}
