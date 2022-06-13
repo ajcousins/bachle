@@ -58,6 +58,7 @@ export default function AnswerInput({
           id="highlights-demo"
           key={autocompleteKey}
           fullWidth
+          blurOnSelect
           options={composers}
           getOptionLabel={(option) => {
             if (typeof option === 'string' || option instanceof String)
