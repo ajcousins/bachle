@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import WorkTile from '../WorkTile';
 import AnswerInput from '../AnswerInput';
-import { condensedDate, fetchData } from './gameHelpers';
+import { fetchData, condensedDate } from './gameHelpers';
 import { defaultGame } from './data';
-import axios from 'axios';
 
 // const GAMEDAY_ID = condensedDate();
 const GAMEDAY_ID = '220613';
@@ -16,11 +15,6 @@ export default function Game() {
     gameData.works.map(() => ({ isPlaying: false }))
   );
   const [resetState, setResetState] = useState(0);
-
-  useEffect(() => {
-    
-    
-  }, []);
 
   // On app first load: Fetch game data. Check local storage. Set userStats.
   useEffect(() => {
