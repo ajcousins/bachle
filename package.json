@@ -15,6 +15,8 @@
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
     "autosuggest-highlight": "^3.2.1",
+    "axios": "^0.27.2",
+    "luxon": "^2.4.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
@@ -50,6 +52,7 @@
   },
   "devDependencies": {
     "@types/autosuggest-highlight": "^3.2.0",
+    "@types/luxon": "^2.3.2",
     "gh-pages": "^4.0.0"
   }
 }

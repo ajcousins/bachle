@@ -1,57 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import WorkTile from './WorkTile';
-import AnswerInput from './AnswerInput';
+import WorkTile from '../WorkTile';
+import AnswerInput from '../AnswerInput';
+import { condensedDate, fetchData } from './gameHelpers';
+import { defaultGame } from './data';
+import axios from 'axios';
 
-const GAMEDAY_ID = 5;
-
-// 
-
-const gameData: any = {
-  id: 1,
-  answer: 'Johann Sebastian Bach',
-  works: [
-    {
-      title: 'Prelude in C Major',
-      url: 'https://soundcloud.com/leotheelion/bach-prelude-in-c-major?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-      startTime: 0,
-      duration: 10,
-    },
-    {
-      title: 'Air on the G string',
-      url: 'https://soundcloud.com/the-anatra-string-quartet/bach-air-on-the-g-string?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-      startTime: 20,
-      duration: 10,
-    },
-    {
-      title: 'Matthäus Passion (BWV 244) - Erbarme Dich',
-      url: 'https://soundcloud.com/pensatore/002-johann-sebastian-bach-matthaus-passion-bwv-244-erbarme-dich?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-      startTime: 30,
-      duration: 5,
-    },
-    {
-      title: '"Chaconne" from Partita in D Minor for Solo Violin - Tim Fain',
-      url: 'https://soundcloud.com/onbeing/tim-fain-chaconne-from-partita-in-d-minor-for-solo-violin-by-johann-sebastian-bach?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-      startTime: 30,
-      duration: 7.5,
-    },
-    {
-      title: 'Suite for Cello solo no 1 in G major-Prelude',
-      url: 'https://soundcloud.com/necmusic/bach-suite-for-cello-solo-no-1?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-      startTime: 3,
-      duration: 10,
-    },
-  ],
-};
+// const GAMEDAY_ID = condensedDate();
+const GAMEDAY_ID = '220613';
+console.log('Date:', GAMEDAY_ID);
 
 export default function Game() {
   const [userStats, setUserStats] = useState<Stat | undefined>();
+  const [gameData, setGameData] = useState<Game>(defaultGame);
   const [worksPlaying, setWorksPlaying] = useState(() =>
     gameData.works.map(() => ({ isPlaying: false }))
   );
   const [resetState, setResetState] = useState(0);
 
-  // On app first load: Check local storage. Set userStats.
   useEffect(() => {
+    
+    
+  }, []);
+
+  // On app first load: Fetch game data. Check local storage. Set userStats.
+  useEffect(() => {
+
+    // Fetch game data & update gameData state.
+    fetchData(GAMEDAY_ID, setGameData);
+
+    // Local Storage
     const storageString = localStorage.getItem('userStats');
 
     const freshStat = {
@@ -137,8 +114,11 @@ export default function Game() {
           />
         );
       })}
-      <AnswerInput handleAnswer={handleAnswer} playingControl={{worksPlaying, setWorksPlaying}} handleReset={handleReset}/>
-      
+      <AnswerInput
+        handleAnswer={handleAnswer}
+        playingControl={{ worksPlaying, setWorksPlaying }}
+        handleReset={handleReset}
+      />
     </>
   );
 }
