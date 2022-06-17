@@ -33,8 +33,8 @@ export default function WorkTile({
       setIsPlaying(true, idx);
 
       widget1.bind(SC.Widget.Events.PLAY_PROGRESS, () => {
-        widget1.getPosition((e: any) => {
-          if (e > (work.startTime + work.duration) * 1000) {
+        widget1.getPosition((e: any) => {          
+          if (e > (Number(work.startTime) + Number(work.duration)) * 1000) {
             widget1.pause();
             setIsPlaying(false, idx);
           }

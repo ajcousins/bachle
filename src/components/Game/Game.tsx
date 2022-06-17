@@ -4,8 +4,8 @@ import AnswerInput from '../AnswerInput';
 import { fetchData, condensedDate } from './gameHelpers';
 import { defaultGame } from './data';
 
-// const GAMEDAY_ID = condensedDate();
-const GAMEDAY_ID = '220613';
+const GAMEDAY_ID = condensedDate();
+// const GAMEDAY_ID = '220613';
 console.log('Date:', GAMEDAY_ID);
 
 export default function Game() {
