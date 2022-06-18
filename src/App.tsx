@@ -7,7 +7,7 @@ import { defaultGame, freshStat } from './components/Game/data';
 import MainScreen from './components/MainScreen'
 
 const GAMEDAY_ID = condensedDate();
-// const GAMEDAY_ID = '220613';
+// const GAMEDAY_ID = '220619';
 console.log('Date:', GAMEDAY_ID);
 
 function App() {

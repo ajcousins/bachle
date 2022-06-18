@@ -17,8 +17,9 @@ export default function MainScreen({
     return (
       
       <Summary 
-        handleReset={handleReset}
-        userStats={userStats}
+      userStats={userStats}
+      gameData={gameData}
+      handleReset={handleReset}
       />
     );
   }

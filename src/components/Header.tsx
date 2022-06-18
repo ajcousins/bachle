@@ -5,7 +5,7 @@ export default function Header() {
       <div className="header__center">
         <h1>Bachle</h1>
       </div>
-      <div className="header__right">v1.17</div>
+      <div className="header__right">v1.18</div>
     </div>
   );
 }
