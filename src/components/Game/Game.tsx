@@ -5,13 +5,13 @@ import AnswerInput from '../AnswerInput';
 interface IProps {
   userStats: any;
   gameData: any;
-  resetState: any;
+  handleReset: any;
 }
 
 export default function Game({
   userStats,
   gameData,
-  resetState,
+  handleReset
 }: IProps) {
   const [worksPlaying, setWorksPlaying] = useState(() =>
     gameData.gameData.works.map(() => ({ isPlaying: false }))
@@ -51,12 +51,6 @@ export default function Game({
     if (answer === gameData.gameData.answer) guess.isCorrect = true;
     if (skipped) guess.isSkipped = true;
     updateGuessList(guess);
-  };
-
-  const handleReset = () => {
-    localStorage.removeItem('userStats');
-    userStats.setUserStats(undefined);
-    resetState.setResetState(resetState.resetState + 1);
   };
 
   return (

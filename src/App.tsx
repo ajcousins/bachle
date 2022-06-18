@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Game from './components/Game/Game';
 import { fetchData, condensedDate } from './components/Game/gameHelpers';
 import { defaultGame, freshStat } from './components/Game/data';
+import MainScreen from './components/MainScreen'
 
 const GAMEDAY_ID = condensedDate();
 // const GAMEDAY_ID = '220613';
@@ -14,7 +15,6 @@ function App() {
   const [gameData, setGameData] = useState<Game>(defaultGame);
   const [userStats, setUserStats] = useState<Stat | undefined>();
   const [resetState, setResetState] = useState(0);
-  
 
   // On app first load: Fetch game data. Check local storage. Set userStats.
   useEffect(() => {
@@ -44,7 +44,6 @@ function App() {
     // eslint-disable-next-line
   }, [resetState]);
 
-
   // update localstorage whenever userStats state updates
   useEffect(() => {
     if (!userStats) return;
@@ -63,30 +62,14 @@ function App() {
     setResetState(resetState + 1);
   };
 
-  const MainScreen = () => {
-    if (userStats?.hasFinished) {
-      return (
-        <div>
-          Finished
-          <button className="btn-mid" type="button" onClick={handleReset}>
-            RESET
-          </button>
-        </div>
-      );
-    }
-    return (
-      <Game
-        userStats={{ userStats, setUserStats }}
-        gameData={{ gameData, setGameData }}
-        resetState={{resetState, setResetState}}
-      />
-    );
-  };
-
   return (
     <div className="App" style={{ height: height }}>
       <Header />
-      <MainScreen />
+      <MainScreen
+        userStats={{ userStats, setUserStats }}
+        gameData={{ gameData, setGameData }}
+        handleReset={handleReset}
+      />
     </div>
   );
 }
