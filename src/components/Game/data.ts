@@ -34,3 +34,9 @@ export const defaultGame: Game = {
     },
   ],
 };
+
+export const freshStat = (gamedayId:string) => ({
+  id: gamedayId,
+  guessList: [],
+  hasFinished: false,
+});
