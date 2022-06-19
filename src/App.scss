@@ -110,7 +110,6 @@ button {
     top: 0;
     background-color: white;
     padding: 0 0.75em;
-    // border-bottom: 1px solid $mid-grey;
   }
 }
 
@@ -166,13 +165,8 @@ button {
   margin-top: auto;
   padding-bottom: 1em;
   width: 100%;
-  // padding-left: 0.75em;
-  // padding-right: 0.75em;
-  // position: fixed;
-  // bottom: 0;
   height: 17em;
   overflow: hidden;
-  // background-color: #ffffaa;
 }
 
 .bottom-bar {
@@ -202,10 +196,23 @@ button {
   align-items: center;
   width: 100%;
   margin-top: 4em;
-  // background-color: cyan;
   &__img {
     width: 100px;
     height: 100px;
+  }
+  &__alert {
+    display: none;
+    position: fixed;
+    top: 4em;
+    width: 90%;
+    margin: 1.2em;
+    padding: 1em;
+    text-align: center;
+    background-color: white;
+    border: 1px solid $mid-grey;
+    -webkit-box-shadow: -11px 10px 38px -7px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: -11px 10px 38px -7px rgba(0, 0, 0, 0.25);
+    box-shadow: -11px 10px 38px -7px rgba(0, 0, 0, 0.25);
   }
   &__detail {
     width: 100%;
@@ -220,10 +227,8 @@ button {
       height: 100px;
     }
     &__info-wrapper {
-      // width: 100%;
       flex: 1 0;
       margin-left: 1em;
-      // background-color: cyan;
       display: flex;
       flex-direction: column;
     }
@@ -236,11 +241,8 @@ button {
       line-height: 1.2em;
     }
     &__sc-logo {
-      // margin-left: auto;
-      // margin-right: 0;
       margin-top: auto;
       align-self: flex-end;
-      // background-color: red;
     }
   }
 }

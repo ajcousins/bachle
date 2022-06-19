@@ -5,10 +5,9 @@ import Game from './components/Game/Game';
 import { fetchData, condensedDate } from './components/Game/gameHelpers';
 import { defaultGame, freshStat } from './components/Game/data';
 import MainScreen from './components/MainScreen'
+import { GAMEDAY_ID } from './data/appConsts';
 
-// const GAMEDAY_ID = condensedDate();
-const GAMEDAY_ID = '220620';
-console.log('Date:', GAMEDAY_ID);
+console.log("Today's date:", GAMEDAY_ID);
 
 function App() {
   const height = window.innerHeight;
