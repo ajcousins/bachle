@@ -6,8 +6,8 @@ import { fetchData, condensedDate } from './components/Game/gameHelpers';
 import { defaultGame, freshStat } from './components/Game/data';
 import MainScreen from './components/MainScreen'
 
-const GAMEDAY_ID = condensedDate();
-// const GAMEDAY_ID = '220619';
+// const GAMEDAY_ID = condensedDate();
+const GAMEDAY_ID = '220620';
 console.log('Date:', GAMEDAY_ID);
 
 function App() {

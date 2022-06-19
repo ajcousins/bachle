@@ -11,7 +11,6 @@ $primary: #ff55ff;
   box-sizing: border-box;
 }
 
-
 body {
   min-height: 100vh;
   /* mobile viewport bug fix */
@@ -19,10 +18,8 @@ body {
 }
 
 html {
-  
   // height: 100%;
   height: -webkit-fill-available;
-  
 }
 
 #root {
@@ -56,6 +53,11 @@ dd {
 
 h1 {
   font-family: 'Playfair Display', serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Set core body defaults */
@@ -190,4 +192,76 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  // background-color: cyan;
+  &__img {
+    width: 100px;
+    height: 100px;
+  }
+  &__detail {
+    width: 100%;
+    background-color: $dark;
+    display: flex;
+    padding: 0.8em;
+    margin-bottom: 2em;
+    color: white;
+    // border-radius: 1em;
+    &__img-placeholder {
+      width: 100px;
+      height: 100px;
+    }
+    &__info-wrapper {
+      // width: 100%;
+      flex: 1 0;
+      margin-left: 1.5em;
+      // background-color: cyan;
+      display: flex;
+      flex-direction: column;
+    }
+    &__text {
+      font-size: 0.8rem;
+      margin-bottom: 0.25em;
+    }
+    &__title {
+      font-size: 1rem;
+      line-height: 1.2em;
+    }
+    &__sc-logo {
+      // margin-left: auto;
+      // margin-right: 0;
+      margin-top: auto;
+      align-self: flex-end;
+      // background-color: red;
+    }
+  }
+}
+
+.gradient-0 {
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+}
+
+.gradient-1 {
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+}
+
+.gradient-3 {
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+}
+
+.gradient-2 {
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+}
+
+.gradient-4 {
+  background-color: #ffdee9;
+  background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
 }

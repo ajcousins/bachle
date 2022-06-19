@@ -103,7 +103,7 @@ export default function WorkTile({
             style={{ display: 'none' }}
             id={`work${idx}`}
             className="all-widgets"
-            src={`https://w.soundcloud.com/player/?url=${work.url}`}
+            src={`https://w.soundcloud.com/player/?url=${work.url}?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing`}
           />
         </div>
       );
