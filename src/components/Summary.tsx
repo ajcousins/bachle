@@ -34,7 +34,9 @@ export default function Summary({ handleReset, userStats, gameData }: IProps) {
     const shareString = `#Bachle-${days(
       FIRST_GAME,
       GAMEDAY_ID
-    )}\n🎻${tileString}\nhttps://www.bachle.app`;
+    )}\n🎻${tileString}${
+      isWinner(userStats.userStats) ? '🎉' : ""
+    }\nhttps://www.bachle.app`;
     navigator.clipboard.writeText(shareString);
 
     setShareAlert(true);
