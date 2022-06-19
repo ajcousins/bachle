@@ -64,7 +64,7 @@ function App() {
 
   return (
     <div className="App" style={{ height: height }}>
-      <Header />
+      <Header gameFinished={userStats?.hasFinished ?? false}/>
       <MainScreen
         userStats={{ userStats, setUserStats }}
         gameData={{ gameData, setGameData }}
