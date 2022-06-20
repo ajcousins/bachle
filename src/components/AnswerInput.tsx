@@ -4,6 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 import { composers } from '../data/composers';
+import AutocompleteAC from './AutocompleteAC';
 
 interface IProps {
   handleAnswer: (answer: string, skipped?: boolean) => void;
@@ -54,7 +55,8 @@ export default function AnswerInput({
   return (
 
       <form className="answer-input" onSubmit={handleSubmit}>
-        <Autocomplete
+        <AutocompleteAC options={composers}/>
+        {/* <Autocomplete
           id="highlights-demo"
           key={autocompleteKey}
           fullWidth
@@ -100,7 +102,7 @@ export default function AnswerInput({
               </li>
             );
           }}
-        />
+        /> */}
         <div className='bottom-bar'>
         <button className='btn-mid' type="button" onClick={handleSkip}>
           SKIP

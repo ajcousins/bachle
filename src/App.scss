@@ -257,6 +257,40 @@ button {
   );
 }
 
+.autocomplete-ac {
+  
+  width: calc(100% - 2px);
+  margin: auto;
+  margin-bottom: 0.5em;
+  font-size: 1.2rem;
+  padding: 0.8em 0.5em;
+  border-radius: 0;
+  border: 1px solid $dark;
+  &:focus {
+    border: 1px solid $primary;
+    outline: 1px solid $primary;
+  }
+  &__wrapper {
+    // background-color: red;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  &__suggestion-abs-wrapper {
+    position: absolute;
+    border: 1.5px solid $primary;
+    bottom: 4em;
+    margin: 0 2em;
+    width: calc(100% - 1.25px);
+    background-color: #eeeeee;
+  }
+  &__suggestion {
+    background-color: #e0c3fc;
+    padding: 0.3em 0.5em;
+  }
+}
+
 .gradient-1 {
   background-color: #0093e9;
   background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
