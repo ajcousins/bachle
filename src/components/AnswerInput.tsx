@@ -17,9 +17,9 @@ export default function AnswerInput({
   playingControl,
   handleReset,
 }: IProps) {
-  const [curInput, setCurInput] = useState('');
+  // const [curInput, setCurInput] = useState('');
   const [autocompleteKey, setAutocompleteKey] = useState(0);
-
+  const [userInput, setUserInput] = useState('');
   const handleSubmit = (e: any) => {
     stopPlayingTracks();
     e.preventDefault();
@@ -29,7 +29,7 @@ export default function AnswerInput({
     handleAnswer(e.target[0].value);
 
     // clear text input
-    setCurInput('');
+    setUserInput('');
     setAutocompleteKey(autocompleteKey + 1);
   };
 
@@ -41,7 +41,7 @@ export default function AnswerInput({
     handleAnswer('', true);
 
     // clear text input
-    setCurInput('');
+    setUserInput('');
     setAutocompleteKey(autocompleteKey + 1);
   };
 
@@ -55,7 +55,7 @@ export default function AnswerInput({
   return (
 
       <form className="answer-input" onSubmit={handleSubmit}>
-        <AutocompleteAC options={composers}/>
+        <AutocompleteAC options={composers} userInput={userInput} setUserInput={setUserInput}/>
         {/* <Autocomplete
           id="highlights-demo"
           key={autocompleteKey}

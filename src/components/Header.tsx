@@ -1,3 +1,5 @@
+import {VERSION} from '../data/appConsts'
+
 interface IProps {
   gameFinished: boolean;
 }
@@ -9,7 +11,7 @@ export default function Header({gameFinished}:IProps) {
       <div className="header__center">
         <h1>Bachle</h1>
       </div>
-      <div className="header__right">v1.23</div>
+      <div className="header__right">v{VERSION}</div>
     </div>
   );
 }
