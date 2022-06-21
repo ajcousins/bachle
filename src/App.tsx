@@ -4,13 +4,17 @@ import Header from './components/Header';
 import Game from './components/Game/Game';
 import { fetchData, condensedDate } from './components/Game/gameHelpers';
 import { defaultGame, freshStat } from './components/Game/data';
-import MainScreen from './components/MainScreen'
+import MainScreen from './components/MainScreen';
 import { GAMEDAY_ID } from './data/appConsts';
 
 console.log("Today's date:", GAMEDAY_ID);
 
+function getWindowHeight() {
+  return window.innerHeight;
+}
+
 function App() {
-  const height = window.innerHeight;
+  const [windowHeight, setWindowHeight] = useState<number>(getWindowHeight());
   const [gameData, setGameData] = useState<Game>(defaultGame);
   const [userStats, setUserStats] = useState<Stat | undefined>();
   const [resetState, setResetState] = useState(0);
@@ -55,6 +59,19 @@ function App() {
     localStorage.setItem('userStats', JSON.stringify(history));
   }, [userStats]);
 
+  // Dynamic height. vh unit in CSS is broken for full screen apps.
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowHeight(getWindowHeight());
+    }
+    window.addEventListener('resize', handleWindowResize);
+    window.addEventListener('orientationchange', handleWindowResize);
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+      window.removeEventListener('orientationchange', handleWindowResize);
+    };
+  }, []);
+
   const handleReset = () => {
     localStorage.removeItem('userStats');
     setUserStats(undefined);
@@ -62,8 +79,8 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ height: height }}>
-      <Header gameFinished={userStats?.hasFinished ?? false}/>
+    <div className="App" style={{ height: windowHeight }}>
+      <Header gameFinished={userStats?.hasFinished ?? false} />
       <MainScreen
         userStats={{ userStats, setUserStats }}
         gameData={{ gameData, setGameData }}

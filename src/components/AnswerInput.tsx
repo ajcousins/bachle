@@ -1,10 +1,6 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import parse from 'autosuggest-highlight/parse';
-import match from 'autosuggest-highlight/match';
+import React, { useState } from 'react';
 import { composers } from '../data/composers';
-import AutocompleteAC from './AutocompleteAC';
+import AutocompleteAC from './Autocomplete/Autocomplete';
 
 interface IProps {
   handleAnswer: (answer: string, skipped?: boolean) => void;
@@ -17,7 +13,6 @@ export default function AnswerInput({
   playingControl,
   handleReset,
 }: IProps) {
-  // const [curInput, setCurInput] = useState('');
   const [autocompleteKey, setAutocompleteKey] = useState(0);
   const [userInput, setUserInput] = useState('');
   const handleSubmit = (e: any) => {
@@ -56,53 +51,6 @@ export default function AnswerInput({
 
       <form className="answer-input" onSubmit={handleSubmit}>
         <AutocompleteAC options={composers} userInput={userInput} setUserInput={setUserInput}/>
-        {/* <Autocomplete
-          id="highlights-demo"
-          key={autocompleteKey}
-          fullWidth
-          blurOnSelect
-          options={composers}
-          getOptionLabel={(option) => {
-            if (typeof option === 'string' || option instanceof String)
-              return '';
-            else return option.name;
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              placeholder="Know the composer?"
-              margin="normal"
-              onChange={(e) => {
-                setCurInput(e.target.value);
-              }}
-              value={curInput}
-            />
-          )}
-          renderOption={(props, option, { inputValue }) => {
-            const matches = match(option.name, inputValue);
-            const parts = parse(option.name, matches);
-
-            if (inputValue.length < 1) return null;
-            return (
-              <li {...props}>
-                <div>
-                  {parts.map((part, index) => (
-                    <span
-                      key={index}
-                      style={{
-                        backgroundColor: part.highlight ? '#ff55ff' : '',
-                        color: part.highlight ? '#ffffff' : '',
-                        padding: '0.4em 0.1em',
-                      }}
-                    >
-                      {part.text}
-                    </span>
-                  ))}
-                </div>
-              </li>
-            );
-          }}
-        /> */}
         <div className='bottom-bar'>
         <button className='btn-mid' type="button" onClick={handleSkip}>
           SKIP

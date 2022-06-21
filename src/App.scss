@@ -284,6 +284,7 @@ button {
     bottom: 4em;
     margin: 0 2em;
     width: calc(100% - 1.25px);
+    z-index: 5;
   }
   &__suggestion {
     cursor: pointer;
