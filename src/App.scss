@@ -19,12 +19,10 @@ body {
 }
 
 html {
-  // height: 100%;
   height: -webkit-fill-available;
 }
 
 #root {
-  // margin: 0 0.5em;
   height: 100%;
 }
 
@@ -72,21 +70,11 @@ button {
   font-size: 16px;
 }
 
-/* MUI classes */
-.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
-  border-radius: 0;
-}
-
-.MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
-  border-radius: 0;
-}
-
 /* App classes */
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // height: 100%;
   margin: 0 0.75em;
 }
 
@@ -166,7 +154,6 @@ button {
   margin-top: auto;
   padding-bottom: 1em;
   width: 100%;
-  // height: 20em;
   overflow: visible;
 }
 
@@ -248,18 +235,9 @@ button {
   }
 }
 
-.gradient-0 {
-  background-color: #4158d0;
-  background-image: linear-gradient(
-    43deg,
-    #4158d0 0%,
-    #c850c0 46%,
-    #ffcc70 100%
-  );
-}
+
 
 .autocomplete-ac {
-  
   width: calc(100% - 2px);
   margin: auto;
   margin-bottom: 0.5em;
@@ -290,14 +268,21 @@ button {
     cursor: pointer;
     padding: 0.5em 0.5em;
     background-color: white;
-    // display: flex;
-    // align-items: baseline;
     &__highlight {
       background-color: $primary-light;
-      // color: white;
       padding: 0.2em 0;
     }
   }
+}
+
+.gradient-0 {
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
 }
 
 .gradient-1 {
