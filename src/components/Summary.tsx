@@ -3,6 +3,7 @@ import EmojiTiles from './EmojiTiles';
 import TrackCredits from './TrackCredits';
 import { FIRST_GAME, GAMEDAY_ID } from '../data/appConsts';
 import { idStringToDateObj } from '../helpers/dateHelpers';
+import Countdown from './Countdown'
 
 interface IProps {
   handleReset: any;
@@ -82,6 +83,7 @@ export default function Summary({ handleReset, userStats, gameData }: IProps) {
         SHARE
       </button>
       <TrackCredits gameData={gameData} />
+      <Countdown />
       <button
         style={{ marginBottom: '1em' }}
         className="btn-mid"

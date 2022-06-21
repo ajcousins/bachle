@@ -191,8 +191,8 @@ button {
   &__alert {
     display: none;
     position: fixed;
-    top: 4em;
-    width: 90%;
+    top: 0.1em;
+    width: 20em;
     margin: 1.2em;
     padding: 1em;
     text-align: center;
@@ -235,6 +235,13 @@ button {
   }
 }
 
+.countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3em 0;
+  // margin-bottom: 3em;
+}
 
 
 .autocomplete-ac {
