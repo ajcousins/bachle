@@ -3,7 +3,8 @@ import EmojiTiles from './EmojiTiles';
 import TrackCredits from './TrackCredits';
 import { FIRST_GAME, GAMEDAY_ID } from '../data/appConsts';
 import { idStringToDateObj } from '../helpers/dateHelpers';
-import Countdown from './Countdown'
+import Countdown from './Countdown';
+import { NONAME } from 'dns';
 
 interface IProps {
   handleReset: any;
@@ -26,7 +27,7 @@ export default function Summary({ handleReset, userStats, gameData }: IProps) {
       return '🟨';
     })
     .join('');
-  const [shareAlert, setShareAlert] = useState(false);
+  const [shareAlert, setShareAlert] = useState(0);
 
   const handleShare = () => {
     if (shareAlert) return;
@@ -36,36 +37,57 @@ export default function Summary({ handleReset, userStats, gameData }: IProps) {
       FIRST_GAME,
       GAMEDAY_ID
     )}\n🎻${tileString}${
-      isWinner(userStats.userStats) ? '🎉' : ""
+      isWinner(userStats.userStats) ? '🎉' : ''
     }\nhttps://www.bachle.app`;
     navigator.clipboard.writeText(shareString);
 
-    setShareAlert(true);
+    setShareAlert(2);
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setShareAlert(false);
+    const timeout1 = setTimeout(() => {
+      setShareAlert(1);
     }, 2000);
+
+    const timeout2 = setTimeout(() => {
+      setShareAlert(0);
+    }, 2500);
+
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
   }, [shareAlert]);
 
-  const hiddenAlertStyle: any = {
-    display: 'initial',
-    opacity: '0%',
-    transition: 'opacity 0.5s',
-  };
+  const alertStyle = (status: number) => {
+    const alertVisible: any = {
+      display: 'initial',
+      opacity: '100%',
+    };
 
-  const alertStyle: any = {
-    display: 'initial',
-    opacity: '100%',
+    const alertFadeOut: any = {
+      display: 'initial',
+      opacity: '0%',
+      transition: 'opacity 0.5s',
+    };
+
+    const alertInvisible: any = {
+      display: 'none',
+    };
+
+    switch (status) {
+      case 2:
+        return alertVisible;
+      case 1:
+        return alertFadeOut;
+      default:
+        return alertInvisible;
+    }
   };
 
   return (
     <div className="summary-screen">
-      <div
-        style={shareAlert ? alertStyle : hiddenAlertStyle}
-        className="summary-screen__alert"
-      >
+      <div style={alertStyle(shareAlert)} className="summary-screen__alert">
         Copied to clipboard!
       </div>
       <h2 style={{ margin: '1em 0' }}>

@@ -79,7 +79,10 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ height: windowHeight }}>
+    <div
+      className="App"
+      style={userStats?.hasFinished ? {} : { height: windowHeight }}
+    >
       <Header gameFinished={userStats?.hasFinished ?? false} />
       <MainScreen
         userStats={{ userStats, setUserStats }}
