@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import WorkTile from '../WorkTile';
 import AnswerInput from '../AnswerInput';
 
 interface IProps {
   userStats: any;
   gameData: any;
-  handleReset: any;
 }
 
-export default function Game({
-  userStats,
-  gameData,
-  handleReset
-}: IProps) {
+export default function Game({ userStats, gameData }: IProps) {
   const [worksPlaying, setWorksPlaying] = useState(() =>
     gameData.gameData.works.map(() => ({ isPlaying: false }))
   );
@@ -31,11 +26,9 @@ export default function Game({
     const idx = update.guessList.length - 1;
 
     if (idx > -1 && update?.guessList[idx].isCorrect) {
-      console.log('CORRECT!');
       update.hasFinished = true;
       userStats.setUserStats(update);
     } else if (update.guessList.length === gameData.gameData.works.length) {
-      console.log('GAMEOVER!');
       update.hasFinished = true;
       userStats.setUserStats(update);
     }
@@ -70,7 +63,6 @@ export default function Game({
       <AnswerInput
         handleAnswer={handleAnswer}
         playingControl={{ worksPlaying, setWorksPlaying }}
-        handleReset={handleReset}
       />
     </>
   );

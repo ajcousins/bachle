@@ -6,7 +6,6 @@ import { idStringToDateObj } from '../helpers/dateHelpers';
 import Countdown from './Countdown';
 
 interface IProps {
-  handleReset: any;
   userStats: any;
   gameData: any;
 }
@@ -18,7 +17,7 @@ const days = (first: any, today: any): number => {
   return diff.days ?? 0;
 };
 
-export default function Summary({ handleReset, userStats, gameData }: IProps) {
+export default function Summary({ userStats, gameData }: IProps) {
   const tileString = gameData.gameData.works
     .map((work: any, i: number) => {
       if (!userStats.userStats.guessList[i]) return '⬜';
@@ -30,7 +29,6 @@ export default function Summary({ handleReset, userStats, gameData }: IProps) {
 
   const handleShare = () => {
     if (shareAlert) return;
-    console.log('Copied to clipboard');
 
     const shareString = `#Bachle-${days(
       FIRST_GAME,
@@ -105,12 +103,7 @@ export default function Summary({ handleReset, userStats, gameData }: IProps) {
       </button>
       <TrackCredits gameData={gameData} />
       <Countdown />
-      <button
-        style={{ marginBottom: '1em' }}
-        className="btn-mid"
-        type="button"
-        onClick={handleReset}
-      >
+      <button style={{ marginBottom: '1em' }} className="btn-mid" type="button">
         RESET
       </button>
     </div>

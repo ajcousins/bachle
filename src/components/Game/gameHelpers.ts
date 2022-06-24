@@ -23,7 +23,7 @@ export async function fetchData(
     );
     setGameData(game.data.game);
   } catch (err) {
-    console.log('Err:', err);
+    console.error('Err:', err);
     return;
   }
 }

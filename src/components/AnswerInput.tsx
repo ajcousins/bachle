@@ -5,14 +5,9 @@ import AutocompleteAC from './Autocomplete/Autocomplete';
 interface IProps {
   handleAnswer: (answer: string, skipped?: boolean) => void;
   playingControl: any;
-  handleReset: any;
 }
 
-export default function AnswerInput({
-  handleAnswer,
-  playingControl,
-  handleReset,
-}: IProps) {
+export default function AnswerInput({ handleAnswer, playingControl }: IProps) {
   const [autocompleteKey, setAutocompleteKey] = useState(0);
   const [userInput, setUserInput] = useState('');
   const handleSubmit = (e: any) => {
@@ -30,7 +25,6 @@ export default function AnswerInput({
 
   const handleSkip = (e: any) => {
     stopPlayingTracks();
-    console.log('skip');
 
     // submit answer to handler
     handleAnswer('', true);
@@ -48,16 +42,20 @@ export default function AnswerInput({
   };
 
   return (
-
-      <form className="answer-input" onSubmit={handleSubmit}>
-        <AutocompleteAC options={composers} userInput={userInput} setUserInput={setUserInput}/>
-        <div className='bottom-bar'>
-        <button className='btn-mid' type="button" onClick={handleSkip}>
+    <form className="answer-input" onSubmit={handleSubmit}>
+      <AutocompleteAC
+        options={composers}
+        userInput={userInput}
+        setUserInput={setUserInput}
+      />
+      <div className="bottom-bar">
+        <button className="btn-mid" type="button" onClick={handleSkip}>
           SKIP
         </button>
-        <button className='btn-mid' type="button" onClick={handleReset}>RESET</button>
-        <button className='btn-full' type="submit">SUBMIT</button>
-        </div>
-      </form>
+        <button className="btn-full" type="submit">
+          SUBMIT
+        </button>
+      </div>
+    </form>
   );
 }
