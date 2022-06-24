@@ -4,7 +4,6 @@ import TrackCredits from './TrackCredits';
 import { FIRST_GAME, GAMEDAY_ID } from '../data/appConsts';
 import { idStringToDateObj } from '../helpers/dateHelpers';
 import Countdown from './Countdown';
-import { NONAME } from 'dns';
 
 interface IProps {
   handleReset: any;

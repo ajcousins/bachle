@@ -5,7 +5,7 @@ import {
 } from '../helpers/dateHelpers';
 
 export default function Countdown() {
-  const [secs, setSecs] = useState(0);
+  const [secs, setSecs] = useState(getSecondsToTomorrow());
 
   useEffect(() => {
     const interval = setInterval(() => {
