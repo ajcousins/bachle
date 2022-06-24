@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bachle/static/css/main.2bc0a7f6.css",
-    "main.js": "/bachle/static/js/main.715ab1ea.js",
+    "main.css": "/bachle/static/css/main.871a4297.css",
+    "main.js": "/bachle/static/js/main.4fc1a310.js",
     "static/js/787.be450006.chunk.js": "/bachle/static/js/787.be450006.chunk.js",
     "index.html": "/bachle/index.html",
-    "main.2bc0a7f6.css.map": "/bachle/static/css/main.2bc0a7f6.css.map",
-    "main.715ab1ea.js.map": "/bachle/static/js/main.715ab1ea.js.map",
+    "main.871a4297.css.map": "/bachle/static/css/main.871a4297.css.map",
+    "main.4fc1a310.js.map": "/bachle/static/js/main.4fc1a310.js.map",
     "787.be450006.chunk.js.map": "/bachle/static/js/787.be450006.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2bc0a7f6.css",
-    "static/js/main.715ab1ea.js"
+    "static/css/main.871a4297.css",
+    "static/js/main.4fc1a310.js"
   ]
 }
