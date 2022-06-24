@@ -103,9 +103,6 @@ export default function Summary({ userStats, gameData }: IProps) {
       </button>
       <TrackCredits gameData={gameData} />
       <Countdown />
-      <button style={{ marginBottom: '1em' }} className="btn-mid" type="button">
-        RESET
-      </button>
     </div>
   );
 }
