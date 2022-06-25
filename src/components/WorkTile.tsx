@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BachlePlay from '../assets/BachlePlay';
 import { SC } from '../scripts/soundcloud';
+import { GameContext } from '../context/GameContext'
 
 interface IProps {
   work: any;
   idx: number;
   worksPlaying: { isPlaying: boolean }[];
   setWorksPlaying: React.Dispatch<any>;
-  userStats?: Stat;
+  // userStats?: Stat;
 }
 
 export default function WorkTile({
@@ -15,8 +16,9 @@ export default function WorkTile({
   idx,
   worksPlaying,
   setWorksPlaying,
-  userStats,
+  // userStats,
 }: IProps) {
+  const { userStats } = useContext(GameContext);
   const setIsPlaying = (playing: boolean, idx: number) => {
     const worksPlayingCopy = worksPlaying.map(() => ({ isPlaying: false }));
     worksPlayingCopy.splice(idx, 1, { isPlaying: playing });

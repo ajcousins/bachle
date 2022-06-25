@@ -1,15 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Game from './Game';
 import Summary from './Summary';
+import { GameContext } from '../context/GameContext';
 
-interface IProps {
-  userStats: any;
-  gameData: any;
-}
-
-export default function MainScreen({ userStats, gameData }: IProps) {
-  if (userStats.userStats?.hasFinished) {
-    return <Summary userStats={userStats} gameData={gameData} />;
+export default function MainScreen() {
+  const { userStats } = useContext(GameContext);
+  if (userStats?.hasFinished) {
+    return <Summary />;
   }
-  return <Game userStats={userStats} gameData={gameData} />;
+  return <Game />;
 }

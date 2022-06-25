@@ -1,27 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { GameContext } from '../context/GameContext';
 import EmojiTiles from './EmojiTiles';
 import TrackCredits from './TrackCredits';
 import { FIRST_GAME, GAMEDAY_ID } from '../data/appConsts';
-import { idStringToDateObj } from '../helpers/dateHelpers';
+import { days } from '../helpers/dateHelpers';
 import Countdown from './Countdown';
 
-interface IProps {
-  userStats: any;
-  gameData: any;
-}
-
-const days = (first: any, today: any): number => {
-  const diff = idStringToDateObj(today)
-    .diff(idStringToDateObj(first), ['days'])
-    .toObject();
-  return diff.days ?? 0;
-};
-
-export default function Summary({ userStats, gameData }: IProps) {
-  const tileString = gameData.gameData.works
+export default function Summary() {
+  const { gameData, userStats } = useContext(GameContext);
+  const tileString = gameData.works
     .map((work: any, i: number) => {
-      if (!userStats.userStats.guessList[i]) return '⬜';
-      if (userStats.userStats.guessList[i].isCorrect) return '🟩';
+      if (!userStats.guessList[i]) return '⬜';
+      if (userStats.guessList[i].isCorrect) return '🟩';
       return '🟨';
     })
     .join('');
@@ -34,7 +24,7 @@ export default function Summary({ userStats, gameData }: IProps) {
       FIRST_GAME,
       GAMEDAY_ID
     )}\n🎻${tileString}${
-      isWinner(userStats.userStats) ? '🎉' : ''
+      isWinner(userStats) ? '🎉' : ''
     }\nhttps://www.bachle.app`;
     navigator.clipboard.writeText(shareString);
 
@@ -88,11 +78,11 @@ export default function Summary({ userStats, gameData }: IProps) {
         Copied to clipboard!
       </div>
       <h2 style={{ margin: '1em 0' }}>
-        {isWinner(userStats.userStats) ? '🎉 You did it! 🎉' : 'Unlucky!'}
+        {isWinner(userStats) ? '🎉 You did it! 🎉' : 'Unlucky!'}
       </h2>
       <div>The answer was</div>
-      <h2 style={{ marginBottom: '1em' }}>{gameData.gameData.answer}</h2>
-      <EmojiTiles stats={userStats.userStats} gameData={gameData.gameData} />
+      <h2 style={{ marginBottom: '1em' }}>{gameData.answer}</h2>
+      <EmojiTiles />
       <button
         style={{ marginBottom: '2em' }}
         className="btn-full"
@@ -101,7 +91,7 @@ export default function Summary({ userStats, gameData }: IProps) {
       >
         SHARE
       </button>
-      <TrackCredits gameData={gameData} />
+      <TrackCredits />
       <Countdown />
     </div>
   );

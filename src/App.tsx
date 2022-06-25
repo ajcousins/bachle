@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import './App.scss';
 import Header from './components/Header';
 import { fetchData } from './components/Game/gameHelpers';
@@ -6,6 +6,7 @@ import { defaultGame, freshStat } from './components/Game/data';
 import MainScreen from './components/MainScreen';
 import { GAMEDAY_ID } from './data/appConsts';
 import Modal from './components/Modal';
+import { GameContext } from './context/GameContext';
 
 console.log("Today's date:", GAMEDAY_ID);
 
@@ -19,6 +20,11 @@ function App() {
   const [userStats, setUserStats] = useState<Stat | undefined>();
   const [resetState, setResetState] = useState(0);
   const [activeModal, setActiveModal] = useState<null | string>(null);
+
+  const gameProviderValue = useMemo(
+    () => ({ gameData, setGameData, userStats, setUserStats }),
+    [gameData, userStats]
+  );
 
   // On app first load: Fetch game data. Check local storage. Set userStats.
   useEffect(() => {
@@ -90,15 +96,14 @@ function App() {
         activeModal={activeModal}
         setActiveModal={setActiveModal}
       />
-      <MainScreen
-        userStats={{ userStats, setUserStats }}
-        gameData={{ gameData, setGameData }}
-      />
-      <Modal
-        activeModal={activeModal}
-        setActiveModal={setActiveModal}
-        handleReset={handleReset}
-      />
+      <GameContext.Provider value={gameProviderValue}>
+        <MainScreen />
+        <Modal
+          activeModal={activeModal}
+          setActiveModal={setActiveModal}
+          handleReset={handleReset}
+        />
+      </GameContext.Provider>
     </div>
   );
 }

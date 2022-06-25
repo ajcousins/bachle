@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GameContext } from '../context/GameContext';
 
-interface EmojiIProps {
-  stats: any;
-  gameData: any;
-}
-
-export default function EmojiTiles({ stats, gameData }: EmojiIProps) {
+export default function EmojiTiles() {
+  const { gameData, userStats } = useContext(GameContext);
   return (
     <div style={{ marginBottom: '2em' }}>
       {gameData.works.map((work: any, i: number) => {
-        if (!stats.guessList[i]) return <span>⬜</span>;
-        if (stats.guessList[i].isCorrect) return <span>🟩</span>;
+        if (!userStats.guessList[i]) return <span>⬜</span>;
+        if (userStats.guessList[i].isCorrect) return <span>🟩</span>;
         return <span>🟨</span>;
       })}
     </div>

@@ -1,36 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { GameContext } from '../../context/GameContext';
 import WorkTile from '../WorkTile';
 import AnswerInput from '../AnswerInput';
 
-interface IProps {
-  userStats: any;
-  gameData: any;
-}
-
-export default function Game({ userStats, gameData }: IProps) {
+export default function Game() {
+  const { gameData, userStats, setUserStats } = useContext(GameContext);
   const [worksPlaying, setWorksPlaying] = useState(() =>
-    gameData.gameData.works.map(() => ({ isPlaying: false }))
+    gameData.works.map(() => ({ isPlaying: false }))
   );
 
   const updateGuessList = (guess: any) => {
-    if (!userStats.userStats) return;
-    const update = { ...userStats.userStats };
+    if (!userStats) return;
+    const update = { ...userStats };
     update.guessList.push(guess);
-    userStats.setUserStats(update);
+    setUserStats(update);
     checkGameover();
   };
 
   const checkGameover = () => {
     if (!userStats) return;
-    const update = { ...userStats.userStats };
+    const update = { ...userStats };
     const idx = update.guessList.length - 1;
 
     if (idx > -1 && update?.guessList[idx].isCorrect) {
       update.hasFinished = true;
-      userStats.setUserStats(update);
-    } else if (update.guessList.length === gameData.gameData.works.length) {
+      setUserStats(update);
+    } else if (update.guessList.length === gameData.works.length) {
       update.hasFinished = true;
-      userStats.setUserStats(update);
+      setUserStats(update);
     }
   };
 
@@ -41,20 +38,19 @@ export default function Game({ userStats, gameData }: IProps) {
       isSkipped: false,
     };
 
-    if (answer === gameData.gameData.answer) guess.isCorrect = true;
+    if (answer === gameData.answer) guess.isCorrect = true;
     if (skipped) guess.isSkipped = true;
     updateGuessList(guess);
   };
 
   return (
     <>
-      {gameData.gameData.works.map((work: any, idx: number) => {
+      {gameData.works.map((work: any, idx: number) => {
         return (
           <WorkTile
             key={idx}
             work={work}
             idx={idx}
-            userStats={userStats.userStats}
             worksPlaying={worksPlaying}
             setWorksPlaying={setWorksPlaying}
           />
