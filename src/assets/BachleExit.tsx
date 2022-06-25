@@ -11,7 +11,7 @@ export default function BachleExit() {
       strokeLinejoin="round"
       width="28"
       height="28"
-      className="modal__exit"
+      className="modal__exit icon-button"
     >
       <line
         x1="18"

@@ -11,6 +11,7 @@ export default function BachleQuestion() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className="icon-button"
     >
       <circle
         cx="12"

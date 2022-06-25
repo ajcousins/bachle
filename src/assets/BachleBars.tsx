@@ -11,6 +11,7 @@ export default function BachleBars() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className="icon-button"
     >
       <path
         d="M12 20v-6M6 20V10M18 20V4"
