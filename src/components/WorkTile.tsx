@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import BachlePlay from '../assets/BachlePlay';
 import { SC } from '../scripts/soundcloud';
-import { GameContext } from '../context/GameContext'
+import { GameContext } from '../context/GameContext';
 
 interface IProps {
   work: any;
@@ -16,8 +16,8 @@ export default function WorkTile({
   idx,
   worksPlaying,
   setWorksPlaying,
-  // userStats,
-}: IProps) {
+}: // userStats,
+IProps) {
   const { userStats } = useContext(GameContext);
   const setIsPlaying = (playing: boolean, idx: number) => {
     const worksPlayingCopy = worksPlaying.map(() => ({ isPlaying: false }));
@@ -35,7 +35,7 @@ export default function WorkTile({
       setIsPlaying(true, idx);
 
       widget1.bind(SC.Widget.Events.PLAY_PROGRESS, () => {
-        widget1.getPosition((e: any) => {          
+        widget1.getPosition((e: any) => {
           if (e > (Number(work.startTime) + Number(work.duration)) * 1000) {
             widget1.pause();
             setIsPlaying(false, idx);
@@ -71,7 +71,18 @@ export default function WorkTile({
           />
           <div className="work-tile__text">
             <span className="skipped-text">🟩 Track {idx + 1}</span>
-           
+            {idx === 0 && (
+              <span
+                style={{
+                  width: '100%',
+                  marginLeft: '1em',
+                  fontStyle: 'italic',
+                  color: '#999999',
+                }}
+              >
+                Tap to play track
+              </span>
+            )}
           </div>
           <BachlePlay />
           <iframe
@@ -93,9 +104,11 @@ export default function WorkTile({
             style={worksPlaying[idx].isPlaying ? progressing : stopped}
           />
           <div className="work-tile__text">
-            {userStats.guessList[idx].isSkipped
-              ? <span className="skipped-text">🟨 SKIPPED</span>
-              : `🟨 ${userStats.guessList[idx].answer} ❌`}
+            {userStats.guessList[idx].isSkipped ? (
+              <span className="skipped-text">🟨 SKIPPED</span>
+            ) : (
+              `🟨 ${userStats.guessList[idx].answer} ❌`
+            )}
           </div>
 
           <BachlePlay />
