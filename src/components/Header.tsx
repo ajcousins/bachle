@@ -1,17 +1,15 @@
+import { useContext } from 'react';
+import { GameContext } from '../context/GameContext';
 import BachleBars from '../assets/BachleBars';
 import BachleQuestion from '../assets/BachleQuestion';
 
 interface IProps {
   gameFinished: boolean;
-  activeModal: null | string;
-  setActiveModal: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export default function Header({
-  gameFinished,
-  activeModal,
-  setActiveModal,
-}: IProps) {
+export default function Header({ gameFinished }: IProps) {
+  const { setActiveModal } = useContext(GameContext);
+
   return (
     <div className={gameFinished ? `header header__fixed` : `header`}>
       <div className="header__left">

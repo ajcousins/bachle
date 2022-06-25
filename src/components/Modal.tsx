@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GameContext } from '../context/GameContext';
 import BachleExit from '../assets/BachleExit';
 import { VERSION } from '../data/appConsts';
 
 interface IProps {
-  activeModal: null | string;
-  setActiveModal: React.Dispatch<React.SetStateAction<string | null>>;
   handleReset: any;
 }
 
-export default function Modal({
-  activeModal,
-  setActiveModal,
-  handleReset,
-}: IProps) {
+interface InnerModalProps {
+  title: string;
+  children: any;
+}
+
+export default function Modal({ handleReset }: IProps) {
+  const { activeModal, setActiveModal } = useContext(GameContext);
+
+  const InnerModal = ({ title, children }: InnerModalProps) => {
+    return (
+      <div className="modal__inner">
+        <div className="modal__inner__heading">
+          <h2>{title}</h2>
+          <div onClick={() => setActiveModal(null)}>
+            <BachleExit />
+          </div>
+        </div>
+        {children}
+      </div>
+    );
+  };
+
   switch (activeModal) {
     case 'stats':
       return (
         <div className="modal">
-          <InnerModal title="Stats" setActiveModal={setActiveModal}>
+          <InnerModal title="Stats">
             <p>Placeholder for stats.</p>
             <div style={{ marginBottom: '2em' }}>v{VERSION}</div>
             <button className="btn-mid" type="button" onClick={handleReset}>
@@ -29,7 +45,7 @@ export default function Modal({
     case 'how-to-play':
       return (
         <div className="modal">
-          <InnerModal title="How To Play" setActiveModal={setActiveModal}>
+          <InnerModal title="How To Play">
             <p>
               Listen to the first track, then find the correct composer in the
               list.
@@ -60,22 +76,3 @@ export default function Modal({
       return null;
   }
 }
-
-interface InnerModalProps {
-  title: string;
-  children: any;
-  setActiveModal: React.Dispatch<React.SetStateAction<string | null>>;
-}
-const InnerModal = ({ title, children, setActiveModal }: InnerModalProps) => {
-  return (
-    <div className="modal__inner">
-      <div className="modal__inner__heading">
-        <h2>{title}</h2>
-        <div onClick={() => setActiveModal(null)}>
-          <BachleExit />
-        </div>
-      </div>
-      {children}
-    </div>
-  );
-};

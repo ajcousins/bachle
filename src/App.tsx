@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import './App.scss';
 import Header from './components/Header';
-import { fetchData } from './components/Game/gameHelpers';
-import { defaultGame, freshStat } from './components/Game/data';
 import MainScreen from './components/MainScreen';
-import { GAMEDAY_ID } from './data/appConsts';
 import Modal from './components/Modal';
 import { GameContext } from './context/GameContext';
+import { fetchData } from './components/Game/gameHelpers';
+import { defaultGame, freshStat } from './components/Game/data';
+import { GAMEDAY_ID } from './data/appConsts';
 
 console.log("Today's date:", GAMEDAY_ID);
 
@@ -22,16 +22,21 @@ function App() {
   const [activeModal, setActiveModal] = useState<null | string>(null);
 
   const gameProviderValue = useMemo(
-    () => ({ gameData, setGameData, userStats, setUserStats }),
-    [gameData, userStats]
+    () => ({
+      gameData,
+      setGameData,
+      userStats,
+      setUserStats,
+      activeModal,
+      setActiveModal,
+    }),
+    [gameData, userStats, activeModal]
   );
 
   // On app first load: Fetch game data. Check local storage. Set userStats.
   useEffect(() => {
-    // Fetch game data & update gameData state.
     fetchData(GAMEDAY_ID, setGameData);
 
-    // Local Storage
     const storageString = localStorage.getItem('userStats');
     const stat = freshStat(GAMEDAY_ID);
     let history = [];
@@ -43,7 +48,6 @@ function App() {
       history = JSON.parse(storageString);
     }
 
-    // does current gameday_id exist in savedArray?
     const idx = history.findIndex((stat: any) => stat.id === GAMEDAY_ID);
     if (idx === -1) {
       history.push(stat);
@@ -91,18 +95,10 @@ function App() {
       className="App"
       style={userStats?.hasFinished ? {} : { height: windowHeight }}
     >
-      <Header
-        gameFinished={userStats?.hasFinished ?? false}
-        activeModal={activeModal}
-        setActiveModal={setActiveModal}
-      />
       <GameContext.Provider value={gameProviderValue}>
+        <Header gameFinished={userStats?.hasFinished ?? false} />
         <MainScreen />
-        <Modal
-          activeModal={activeModal}
-          setActiveModal={setActiveModal}
-          handleReset={handleReset}
-        />
+        <Modal handleReset={handleReset} />
       </GameContext.Provider>
     </div>
   );
