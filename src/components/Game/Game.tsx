@@ -1,13 +1,27 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { GameContext } from '../../context/GameContext';
 import WorkTile from '../WorkTile';
 import AnswerInput from '../AnswerInput';
+import { generateUserId } from '../../helpers/dateHelpers';
 
 export default function Game() {
   const { gameData, userStats, setUserStats } = useContext(GameContext);
   const [worksPlaying, setWorksPlaying] = useState(() =>
     gameData.works.map(() => ({ isPlaying: false }))
   );
+  const [userId, setUserId] = useState("");
+
+  // handle userId
+  useEffect(() => {
+    const id = localStorage.getItem('userId');
+    if (!id) {
+      const newId = generateUserId()
+      localStorage.setItem('userId', newId);
+      setUserId(newId);
+      return;
+    }
+    setUserId(id);
+  }, [])
 
   const updateGuessList = (guess: any) => {
     if (!userStats) return;
@@ -22,12 +36,14 @@ export default function Game() {
     const update = { ...userStats };
     const idx = update.guessList.length - 1;
 
-    if (idx > -1 && update?.guessList[idx].isCorrect) {
+    if (
+      (idx > -1 && update?.guessList[idx].isCorrect) ||
+      update.guessList.length === gameData.works.length
+    ) {
       update.hasFinished = true;
       setUserStats(update);
-    } else if (update.guessList.length === gameData.works.length) {
-      update.hasFinished = true;
-      setUserStats(update);
+      console.log('Game finished. Post results to backend.', update);
+      // TO DO: SEND THE UPDATED USERSTATS (plus unique user ID from local storage) TO BACKEND FROM HERE
     }
   };
 
@@ -63,3 +79,20 @@ export default function Game() {
     </>
   );
 }
+
+/*
+const example = {
+  'asu3nf393n8f0n': {
+    '220620': [
+      { answer: '', isCorrect: false },
+      { answer: 'Ludwig van Beethoven', isCorrect: false },
+      { answer: 'Johann Sebastian Bach', isCorrect: true },
+    ],
+    '220621': [
+      { answer: 'Brahms', isCorrect: false },
+      { answer: 'Franz List', isCorrect: true },
+    ],
+  },
+};
+
+*/

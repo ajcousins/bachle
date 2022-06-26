@@ -28,3 +28,7 @@ export const days = (first: any, today: any): number => {
     .toObject();
   return diff.days ?? 0;
 };
+
+export const generateUserId = (): string => {
+  return DateTime.now().toFormat('yyMMdd-HHmm-ssSSS');
+};
