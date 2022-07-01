@@ -77,7 +77,7 @@ IProps) {
                   width: '100%',
                   marginLeft: '1em',
                   fontStyle: 'italic',
-                  color: '#999999',
+                  color: '#ffffff77',
                 }}
               >
                 Tap to play track
