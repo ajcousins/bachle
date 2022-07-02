@@ -1,5 +1,5 @@
 interface Stat {
-  id: number;
+  id: string;
   guessList: any[];
   hasFinished: boolean;
   // hasStarted: boolean;

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { GameContext } from '../context/GameContext';
 import BachleExit from '../assets/BachleExit';
 import { VERSION } from '../data/appConsts';
+import UserStatistics from './UserStatistics';
 
 interface IProps {
   handleReset: any;
@@ -35,6 +36,7 @@ export default function Modal({ handleReset }: IProps) {
         <div className="modal">
           <InnerModal title="Stats">
             <p>Placeholder for stats.</p>
+            <UserStatistics />
             <div style={{ marginBottom: '2em' }}>v{VERSION}</div>
             <button className="btn-mid" type="button" onClick={handleReset}>
               RESET HISTORY

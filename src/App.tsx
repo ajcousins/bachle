@@ -15,11 +15,13 @@ function getWindowHeight() {
 }
 
 function App() {
+  const [gamedayId, setGamedayId] = useState(GAMEDAY_ID);
   const [windowHeight, setWindowHeight] = useState<number>(getWindowHeight());
-  const [gameData, setGameData] = useState<Game>(defaultGame);
+  const [gameData, setGameData] = useState<Game | undefined>();
   const [userStats, setUserStats] = useState<Stat | undefined>();
   const [resetState, setResetState] = useState(0);
   const [activeModal, setActiveModal] = useState<null | string>(null);
+  const [history, setHistory] = useState<Stat[] | undefined>();
 
   const gameProviderValue = useMemo(
     () => ({
@@ -33,30 +35,46 @@ function App() {
     [gameData, userStats, activeModal]
   );
 
-  // On app first load: Fetch game data. Check local storage. Set userStats.
   useEffect(() => {
-    fetchData(GAMEDAY_ID, setGameData);
+    fetchData(gamedayId).then((data) => {
+      setGameData(data?.data.game);
+    });
+    // Forces a reset when incremented
+  }, [resetState]);
 
+  // If gameData updates at anytime: update the history and align with state
+  useEffect(() => {
+    if (!gameData) return;
     const storageString = localStorage.getItem('userStats');
-    const stat = freshStat(GAMEDAY_ID);
-    let history = [];
-
+    const stat = freshStat(gamedayId);
+    let history: Stat[] = [];
     if (!storageString) {
+      history.push(stat);
+      localStorage.setItem('userStats', JSON.stringify(history));
+    } else if (!isGameInHistory(JSON.parse(storageString), gamedayId)) {
+      history = JSON.parse(storageString);
       history.push(stat);
       localStorage.setItem('userStats', JSON.stringify(history));
     } else {
       history = JSON.parse(storageString);
     }
+    setHistory(history);
+  }, [gameData, gamedayId]);
 
-    const idx = history.findIndex((stat: any) => stat.id === GAMEDAY_ID);
-    if (idx === -1) {
-      history.push(stat);
-      localStorage.setItem('userStats', JSON.stringify(history));
-    }
-    setUserStats(history[idx]);
+  // if history updates at anytime: update the current userStats/gameProgess
+  useEffect(() => {
+    if (!history) return;
+    let curIdx = history.findIndex(
+      (stat: Stat) => stat.id.toString() === gamedayId
+    );
+    if (curIdx === -1) return;
+    setUserStats(history[curIdx]);
+  }, [history, gamedayId]);
 
-    // eslint-disable-next-line
-  }, [resetState]);
+  const isGameInHistory = (history: Stat[], gameId: string): boolean => {
+    const idx = history.findIndex((stat: Stat) => stat.id === gameId);
+    return idx !== -1;
+  };
 
   // update localstorage whenever userStats state updates
   useEffect(() => {
