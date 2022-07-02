@@ -2,7 +2,6 @@ interface Stat {
   id: string;
   guessList: any[];
   hasFinished: boolean;
-  // hasStarted: boolean;
 }
 
 interface Game {

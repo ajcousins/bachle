@@ -44,8 +44,7 @@ export default function Game() {
       update.hasFinished = true;
       setUserStats(update);
       console.log('Game finished. Post results to backend.', update);
-      // TO DO: SEND THE UPDATED USERSTATS (plus unique user ID from local storage) TO BACKEND FROM HERE
-      postStats(update, userId)
+      postStats(update, userId);
     }
   };
 
@@ -81,38 +80,3 @@ export default function Game() {
     </>
   );
 }
-
-/*
-
-const dataToSend = {
-  guessList: [
-    { answer: '', isCorrect: false },
-    { answer: 'Ludwig van Beethoven', isCorrect: false },
-    { answer: 'Johann Sebastian Bach', isCorrect: true },
-  ],
-  hasFinished: true,
-  id: '220620',
-};
-
-const userStatsTableInAWS = {
-  '220626-2757-00001': {
-    '220620': [
-      { answer: '', isCorrect: false },
-      { answer: 'Ludwig van Beethoven', isCorrect: false },
-      { answer: 'Johann Sebastian Bach', isCorrect: true },
-    ],
-    '220621': [
-      { answer: 'Brahms', isCorrect: false },
-      { answer: 'Franz List', isCorrect: true },
-    ],
-  },
-  '220626-2200-00002': {
-    '220620': [
-      { answer: '', isCorrect: false },
-      { answer: 'Johann Sebastian Bach', isCorrect: true },
-    ],
-    '220621': [{ answer: 'Franz List', isCorrect: true }],
-  },
-};
-
-*/
