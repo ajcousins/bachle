@@ -1,7 +1,11 @@
 import { DateTime } from 'luxon';
 
-export const idStringToDateObj = (id: string) => {
+export const idStringToDateObj = (id: string): DateTime => {
   return DateTime.fromFormat(id, 'yyMMdd');
+};
+
+export const dateObjToIdString = (obj: DateTime): string => {
+  return obj.toFormat('yyMMdd');
 };
 
 export const getSecondsToTomorrow = (): number => {
@@ -31,4 +35,17 @@ export const days = (first: any, today: any): number => {
 
 export const generateUserId = (): string => {
   return DateTime.now().toFormat('yyMMdd-HHmm-ssSSS');
+};
+
+export const consecDateStrings = (firstDateString: string): string[] => {
+  const tomorrow: DateTime = DateTime.now().plus({ days: 1 }).startOf('day');
+  const dates: string[] = [];
+  let current = idStringToDateObj(firstDateString);
+
+  while (current < tomorrow) {
+    dates.push(dateObjToIdString(current));
+    current = current.plus({ days: 1 });
+  }
+
+  return dates;
 };
