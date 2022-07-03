@@ -338,10 +338,41 @@ button {
   cursor: pointer;
 }
 
-.statistics {
-  background-color: red;
+.distribution {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 2em 13em 2em 2em;
+  justify-items: center;
+  align-items: end;
+  margin-bottom: 1em;
+  &__bar {
+    background-color: $dark;
+    width: 35%;
+    position: relative;
+  }
+  &__lose {
+    background-color: $primary;
+  }
+  &__num-label {
+    position: absolute;
+    top: -1.8em;
+    width: 100%;
+    text-align: center;
+  }
 }
 
+.stat-summary {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  & > p {
+    text-align: center;
+    line-height: 1.2em;
+  }
+}
+
+/** -- GRADIENTS FOR PLACEHOLDER ALBUM COVERS -- **/
 .gradient-0 {
   background-color: #4158d0;
   background-image: linear-gradient(

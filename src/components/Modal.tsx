@@ -34,13 +34,21 @@ export default function Modal({ handleReset }: IProps) {
     case 'stats':
       return (
         <div className="modal">
-          <InnerModal title="Stats">
-            <p>Placeholder for stats.</p>
+          <InnerModal title="Statistics">
             <UserStatistics />
-            <div style={{ marginBottom: '2em' }}>v{VERSION}</div>
-            <button className="btn-mid" type="button" onClick={handleReset}>
-              RESET HISTORY
-            </button>
+            <div
+              style={{
+                marginTop: '1.5em',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <button className="btn-mid" type="button" onClick={handleReset}>
+                RESET HISTORY
+              </button>
+              <div>v{VERSION}</div>
+            </div>
           </InnerModal>
         </div>
       );

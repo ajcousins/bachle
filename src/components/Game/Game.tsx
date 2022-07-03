@@ -43,7 +43,6 @@ export default function Game() {
     ) {
       update.hasFinished = true;
       setUserStats(update);
-      console.log('Game finished. Post results to backend.', update);
       postStats(update, userId);
     }
   };
