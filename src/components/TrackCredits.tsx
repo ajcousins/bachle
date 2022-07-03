@@ -8,7 +8,7 @@ export default function TrackCredits() {
     <>
       {gameData.works.map((work: any, i: number) => {
         return (
-          <div className="summary-screen__detail">
+          <div className="summary-screen__detail" key={`credit-tile-${i}`}>
             {work?.detail && work.detail.artworkUrl ? (
               <img
                 className="summary-screen__img"

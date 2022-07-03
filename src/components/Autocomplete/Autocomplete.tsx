@@ -39,9 +39,10 @@ export default function AutocompleteAC({
         }
         className="autocomplete-ac__suggestion-abs-wrapper"
       >
-        {suggestions.map((suggestion) => {
+        {suggestions.map((suggestion, i) => {
           return (
             <Suggestion
+              key={`suggestion-${i}`}
               text={suggestion}
               highlight={userInput}
               setUserInput={setUserInput}
