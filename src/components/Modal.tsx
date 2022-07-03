@@ -36,7 +36,7 @@ export default function Modal({ handleReset }: IProps) {
         <div className="modal">
           <InnerModal title="Statistics">
             <UserStatistics />
-            <div
+            {/* <div
               style={{
                 marginTop: '1.5em',
                 display: 'flex',
@@ -48,7 +48,7 @@ export default function Modal({ handleReset }: IProps) {
                 RESET HISTORY
               </button>
               <div>v{VERSION}</div>
-            </div>
+            </div> */}
           </InnerModal>
         </div>
       );

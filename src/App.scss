@@ -319,7 +319,6 @@ button {
     border: 1px solid $mid-grey;
     padding: 1em 1.5em 2em 1.5em;
     position: relative;
-    height: auto;
     & > p {
       margin-bottom: 0.8em;
       color: $dark;
@@ -341,7 +340,7 @@ button {
 .distribution {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 2em 13em 2em 2em;
+  grid-template-rows: 2em 9em 2em 2em;
   justify-items: center;
   align-items: end;
   margin-bottom: 1em;
