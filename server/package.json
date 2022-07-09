@@ -1,0 +1,23 @@
+{
+  "name": "autoscaling-placeholder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preprod-deploy": "cd ./../client && npm run build",
+    "prod-deploy": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajcousins/autoscaling-placeholder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajcousins/autoscaling-placeholder/issues"
+  },
+  "homepage": "https://github.com/ajcousins/autoscaling-placeholder#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
