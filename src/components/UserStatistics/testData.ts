@@ -355,3 +355,96 @@ export const data08 = [
     hasFinished: true,
   },
 ];
+
+export const data09 = [
+  {
+    id: '220607',
+    guessList: [
+      { answer: 'Br', isCorrect: false, isSkipped: false },
+      { answer: 'Johannes Brahms', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+  {
+    id: '220704',
+    guessList: [
+      { answer: '', isCorrect: false, isSkipped: true },
+      { answer: '', isCorrect: false, isSkipped: true },
+      { answer: 'Johannes Brahms', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+  {
+    id: '220705',
+    guessList: [
+      { answer: '', isCorrect: false, isSkipped: true },
+      { answer: '', isCorrect: false, isSkipped: true },
+      { answer: 'Sergei Rachmaninov', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+  {
+    id: '220706',
+    guessList: [
+      { answer: 'Johannes Brahms', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+  {
+    id: '220708',
+    guessList: [
+      { answer: 'Johannes Brahms', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+];
+
+export const data10 = [
+  {
+    id: '220607',
+    guessList: [
+      { answer: 'Br', isCorrect: false, isSkipped: false },
+      { answer: 'Johannes Brahms', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+  {
+    id: '220704',
+    guessList: [
+      { answer: '', isCorrect: false, isSkipped: true },
+      { answer: '', isCorrect: false, isSkipped: true },
+      { answer: 'Johannes Brahms', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+  {
+    id: '220705',
+    guessList: [
+      { answer: '', isCorrect: false, isSkipped: true },
+      { answer: '', isCorrect: false, isSkipped: true },
+      { answer: 'Sergei Rachmaninov', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+  {
+    id: '220706',
+    guessList: [
+      { answer: 'Johannes Brahms', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+  {
+    id: '220708',
+    guessList: [
+      { answer: 'Johannes Brahms', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+  {
+    id: '220709',
+    guessList: [
+      { answer: 'Sergei Rachmaninov', isCorrect: true, isSkipped: false },
+    ],
+    hasFinished: true,
+  },
+];

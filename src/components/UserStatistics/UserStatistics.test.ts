@@ -12,6 +12,8 @@ import {
   data06,
   data07,
   data08,
+  data09,
+  data10,
 } from './testData';
 
 describe('Get score distribution', () => {
@@ -99,3 +101,24 @@ describe('Get current streak', () => {
     expect(getCurrentStreak(data08, '220510')).toEqual(0);
   });
 });
+
+describe('iPhone debug 1', () => {
+  it('should return max streak of 3', () => {
+    expect(getMaxStreak(data09)).toEqual(3);
+  });
+  it('should return current streak of 0', () => {
+    expect(getCurrentStreak(data09, '220709')).toEqual(0);
+  })
+  it('should return current streak of 1', () => {
+    expect(getCurrentStreak(data09, '220708')).toEqual(1);
+  })
+})
+
+describe('iPhone debug 2', () => {
+  it('should return max streak of 3', () => {
+    expect(getMaxStreak(data10)).toEqual(3);
+  });
+  it('should return current streak of 0', () => {
+    expect(getCurrentStreak(data10, '220709')).toEqual(2);
+  })
+})
