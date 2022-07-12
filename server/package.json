@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "preprod-deploy": "cd ./../client && npm run build",
-    "prod-deploy": "node app.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ajcousins/autoscaling-placeholder.git"

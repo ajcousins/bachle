@@ -1,0 +1,22 @@
+{
+  "name": "bachle",
+  "version": "1.0.0",
+  "description": "A daily composer guessing game",
+  "main": "index.js",
+  "scripts": {
+    "build-server": "cd server && npm install",
+    "build-client": "cd client && npm install",
+    "preprod-start": "cd client && npm run build",
+    "prod-start": "cd server && node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajcousins/bachle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajcousins/bachle/issues"
+  },
+  "homepage": "https://github.com/ajcousins/bachle#readme"
+}
