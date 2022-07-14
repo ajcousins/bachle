@@ -27,11 +27,9 @@ git clone https://github.com/ajcousins/bachle.git
 
 cd bachle
 
-npm install pm2 -g
-
 sudo chmod -R 755 .
 
 npm run install-server
 npm run install-client
 npm run prod-build
-pm2 --name Bachle start npm -- start
+npm start &
