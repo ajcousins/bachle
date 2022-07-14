@@ -4,9 +4,9 @@
   "description": "A daily composer guessing game",
   "main": "index.js",
   "scripts": {
-    "build-server": "cd server && npm install",
-    "build-client": "cd client && npm install",
-    "preprod-start": "cd client && npm run build",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "prod-build": "cd client && npm run build",
     "prod-start": "cd server && node app.js"
   },
   "repository": {

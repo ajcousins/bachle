@@ -1,15 +1,7 @@
 #!/bin/bash -ex
-# output user data logs into a separate file for debugging
-exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 
 # download nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-
-# source nvm
-# . /.nvm/nvm.sh
-
-# install node
-# nvm install node
 
 # export NVM dir
 export NVM_DIR="$HOME/.nvm"
@@ -30,6 +22,7 @@ git clone https://github.com/ajcousins/bachle.git
 
 cd bachle
 
-npm run build-server
-npm run build-client
+npm run install-server
+npm run install-client
+npm run prod-build
 npm run prod-start
