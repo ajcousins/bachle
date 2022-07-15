@@ -23,7 +23,7 @@ export default function UserStatistics() {
       <Distribution dist={getScoreDistribution(finHistory)} />
       <Separator />
       <StatSummary finHistory={finHistory} gamedayId={gamedayId} />
-      {/* <p style={{fontSize:'0.8em'}}>
+      {/* <p style={{fontSize:'1pt'}}>
       {JSON.stringify(finHistory)}
       </p><p>End</p> */}
     </div>

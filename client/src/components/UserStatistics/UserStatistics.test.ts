@@ -14,6 +14,9 @@ import {
   data08,
   data09,
   data10,
+  data11,
+  data12,
+  data13,
 } from './testData';
 
 describe('Get score distribution', () => {
@@ -108,11 +111,11 @@ describe('iPhone debug 1', () => {
   });
   it('should return current streak of 0', () => {
     expect(getCurrentStreak(data09, '220709')).toEqual(0);
-  })
+  });
   it('should return current streak of 1', () => {
     expect(getCurrentStreak(data09, '220708')).toEqual(1);
-  })
-})
+  });
+});
 
 describe('iPhone debug 2', () => {
   it('should return max streak of 3', () => {
@@ -120,5 +123,32 @@ describe('iPhone debug 2', () => {
   });
   it('should return current streak of 0', () => {
     expect(getCurrentStreak(data10, '220709')).toEqual(2);
-  })
-})
+  });
+});
+
+describe('iPhone debug 3, Tina iPhone - 220706', () => {
+  it('should return correct current streak - 220706', () => {
+    expect(getCurrentStreak(data11, '220706')).toEqual(1);
+  });
+  it('should return correct max streak - 220706', () => {
+    expect(getMaxStreak(data11)).toEqual(4);
+  });
+});
+
+describe('iPhone debug 3, Tina iPhone - 220708', () => {
+  it('should return correct current streak - 220708', () => {
+    expect(getCurrentStreak(data12, '220708')).toEqual(3);
+  });
+  it('should return correct max streak - 220708', () => {
+    expect(getMaxStreak(data12)).toEqual(4);
+  });
+});
+
+describe('iPhone debug 3, Tina iPhone - 220711', () => {
+  it('should return correct current streak - 220711', () => {
+    expect(getCurrentStreak(data13, '220711')).toEqual(6);
+  });
+  it('should return correct max streak - 220711', () => {
+    expect(getMaxStreak(data13)).toEqual(6);
+  });
+});
