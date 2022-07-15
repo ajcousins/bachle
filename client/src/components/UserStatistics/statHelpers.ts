@@ -1,5 +1,10 @@
 import { consecDateStrings } from '../../helpers/dateHelpers';
 
+export const todayIsDone = (finHistory: Stat[], gamedayId: string): boolean => {
+  if (!finHistory) return false;
+  return finHistory.some((stat) => stat.id === gamedayId);
+};
+
 export const numWon = (history: Stat[] | undefined): number => {
   if (!history) return 0;
   return history.reduce(

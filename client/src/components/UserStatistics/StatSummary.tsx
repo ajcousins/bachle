@@ -1,5 +1,6 @@
 import React from 'react';
-import { numWon, getCurrentStreak, getMaxStreak } from './statHelpers';
+import { todayIsDone, numWon, getCurrentStreak, getMaxStreak } from './statHelpers';
+import { yesterdayId } from '../../helpers/dateHelpers'
 
 interface IProps {
   finHistory: any;
@@ -7,6 +8,15 @@ interface IProps {
 }
 
 export default function StatSummary({ finHistory, gamedayId }: IProps) {
+
+  console.log("gamedayId:", gamedayId);
+  // if finHistory doesn't have today's date, then stats should
+  // display yesterday's stats
+  console.log("finHistory:", finHistory);
+
+  let endDate = todayIsDone(finHistory, gamedayId) ? gamedayId : yesterdayId(gamedayId)
+  
+
   return (
     <div className="stat-summary">
       {!finHistory ? null : (
@@ -21,7 +31,7 @@ export default function StatSummary({ finHistory, gamedayId }: IProps) {
             %
           </h2>
           <h2>
-            {getCurrentStreak(finHistory, gamedayId)} :{' '}
+            {getCurrentStreak(finHistory, endDate)} :{' '}
             {getMaxStreak(finHistory)}
           </h2>
           <p>Correct</p>

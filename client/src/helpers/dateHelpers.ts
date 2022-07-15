@@ -49,3 +49,8 @@ export const consecDateStrings = (firstDateString: string): string[] => {
 
   return dates;
 };
+
+export const yesterdayId = (gamedayId: string): string => {
+  const yesterday = idStringToDateObj(gamedayId).minus({ days: 1 });
+  return dateObjToIdString(yesterday);
+};
