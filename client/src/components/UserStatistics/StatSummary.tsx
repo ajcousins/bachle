@@ -8,15 +8,7 @@ interface IProps {
 }
 
 export default function StatSummary({ finHistory, gamedayId }: IProps) {
-
-  console.log("gamedayId:", gamedayId);
-  // if finHistory doesn't have today's date, then stats should
-  // display yesterday's stats
-  console.log("finHistory:", finHistory);
-
-  let endDate = todayIsDone(finHistory, gamedayId) ? gamedayId : yesterdayId(gamedayId)
-  
-
+  const endDate = todayIsDone(finHistory, gamedayId) ? gamedayId : yesterdayId(gamedayId)
   return (
     <div className="stat-summary">
       {!finHistory ? null : (
