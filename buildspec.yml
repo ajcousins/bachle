@@ -23,4 +23,4 @@ artifacts:
   files:
     - "**/*"
   discard-paths: no
-  base-directory: bachle/client/build
+  base-directory: client/build
