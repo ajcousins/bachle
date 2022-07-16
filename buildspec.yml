@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Install...
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+      - . /.nvm/nvm.sh
+      - nvm install 16
+      - export NVM_DIR="$HOME/.nvm"
+      - [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      - [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  pre-build:
+    commands:
+      - echo Installing dependencies...
+      - cd bachle
+      - npm run install-client
+      
+  build:
+    commands:
+      - echo Testing...
+      - cd bachle/client
+      - npm run test
+      - echo Building...
+      - cd ..
+      - npm run prod-build
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: bachle/client/build
