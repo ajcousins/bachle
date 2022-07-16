@@ -9,13 +9,12 @@ phases:
   pre_build:
     commands:
       - echo Installing dependencies...
-      - cd bachle
       - npm run install-client
       
   build:
     commands:
       - echo Testing...
-      - cd bachle/client
+      - cd client
       - npm run test
       - echo Building...
       - cd ..
