@@ -38,10 +38,6 @@ describe('Get score distribution', () => {
 });
 
 describe('Get max streak', () => {
-  it('returns 0 from undefined', () => {
-    expect(getMaxStreak(undefined)).toEqual(0);
-  });
-
   it('returns 0 from zero wins', () => {
     expect(getMaxStreak(data01)).toEqual(0);
   });
@@ -64,6 +60,12 @@ describe('Get max streak', () => {
 
   it('returns 5 from max streak, missed days', () => {
     expect(getMaxStreak(data06)).toEqual(3);
+  });
+});
+
+describe('Same day max streak', () => {
+  it('should return correct max streak - 220615', () => {
+    expect(getMaxStreak(data02)).toEqual(1);
   });
 });
 

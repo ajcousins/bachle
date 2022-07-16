@@ -25,7 +25,7 @@ export default function Summary() {
       GAMEDAY_ID
     )}\n🎻${tileString}${
       isWinner(userStats) ? '🎉' : ''
-    }\nhttps://www.bachle.app`;
+    }\nhttps://bachle.co`;
     navigator.clipboard.writeText(shareString);
 
     setShareAlert(2);

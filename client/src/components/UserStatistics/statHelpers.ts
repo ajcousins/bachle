@@ -14,8 +14,8 @@ export const numWon = (history: Stat[] | undefined): number => {
   );
 };
 
-export const getMaxStreak = (history: Stat[] | undefined): number => {
-  if (!history) return 0;
+export const getMaxStreak = (history: Stat[]): number => {
+  if (history.length === 0) return 0;
 
   const gamesInHistory = history
     .map((stat: Stat) => {
@@ -57,11 +57,9 @@ export const getMaxStreak = (history: Stat[] | undefined): number => {
       }
     }
   });
+  counts.push(currentCount);
 
-  const maxCount = counts.reduce((prev, cur) => {
-    if (cur > prev) return cur;
-    else return prev;
-  }, 0);
+  const maxCount = counts.reduce((prev, cur) => (cur > prev ? cur : prev), 0);
 
   return counts.length ? maxCount : 0;
 };

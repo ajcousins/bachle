@@ -8,7 +8,7 @@ import { fetchData } from './components/Game/gameHelpers';
 import { GAMEDAY_ID } from './data/appConsts';
 import updateHistory from './helpers/updateHistory';
 
-console.log("Today's date:", GAMEDAY_ID);
+console.log("Today:", GAMEDAY_ID);
 
 function getWindowHeight() {
   return window.innerHeight;
