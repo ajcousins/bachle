@@ -6,11 +6,7 @@ export const condensedDate = () => {
 };
 
 const getDate = () => {
-  return DateTime.now().toLocaleString({
-    year: '2-digit',
-    month: '2-digit',
-    day: '2-digit',
-  });
+  return DateTime.now().toFormat('yyMMdd');
 };
 
 export async function fetchData(

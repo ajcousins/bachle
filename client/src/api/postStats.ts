@@ -6,7 +6,7 @@ const postStats = async (stats: any, userId: string) => {
       `https://je7nu5ny87.execute-api.us-east-1.amazonaws.com/dev/post-user-stats/${userId}`,
       stats
     );
-    console.log("res:", res);
+    // console.log("res:", res);
     
   } catch (err) {
     console.error('Err:', err)
