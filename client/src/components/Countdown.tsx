@@ -10,7 +10,7 @@ export default function Countdown() {
   useEffect(() => {
     const interval = setInterval(() => {
       setSecs(getSecondsToTomorrow());
-    }, 1000);
+    }, 200);
     return () => {
       clearInterval(interval);
     };

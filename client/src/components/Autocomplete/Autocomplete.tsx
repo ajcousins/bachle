@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import Suggestion from './Suggestion';
 import makeSuggestions from './makeSuggestions';
 
@@ -6,14 +6,17 @@ interface IProps {
   options: { name: string }[];
   userInput: string;
   setUserInput: any;
+  suggestions: string[];
+  setSuggestions: Dispatch<SetStateAction<string[]>>;
 }
 
 export default function AutocompleteAC({
   options,
   userInput,
   setUserInput,
+  suggestions,
+  setSuggestions
 }: IProps) {
-  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [focused, setFocused] = useState(false);
 
   const handleChange = (e: any) => {

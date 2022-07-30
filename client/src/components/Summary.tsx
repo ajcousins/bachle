@@ -81,7 +81,7 @@ export default function Summary() {
         {isWinner(userStats) ? '🎉 You did it! 🎉' : 'Unlucky!'}
       </h2>
       <div>The answer was</div>
-      <h2 style={{ marginBottom: '1em' }}>{gameData.answer}</h2>
+      <h2 style={{ marginBottom: '1em', textAlign: 'center' }}>{gameData.answer}</h2>
       <EmojiTiles />
       <button
         style={{ marginBottom: '2em' }}
