@@ -274,7 +274,7 @@ button {
     justify-content: center;
     flex-direction: column;
     margin-bottom: 0.5em;
-    border: 1.5px solid black;
+    border: 1px solid $mid-grey;
   }
   &__suggestion-abs-wrapper {
     display: none;

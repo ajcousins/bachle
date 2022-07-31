@@ -63,7 +63,7 @@ export default function AutocompleteAC({
         onBlur={() => setFocused(false)}
         onChange={handleChange}
         type="text"
-        placeholder="Know the composer?"
+        placeholder="Who's the composer?"
         value={userInput}
       />
     </div>

@@ -8,7 +8,6 @@ interface IProps {
   idx: number;
   worksPlaying: { isPlaying: boolean }[];
   setWorksPlaying: React.Dispatch<any>;
-  // userStats?: Stat;
 }
 
 export default function WorkTile({
@@ -16,7 +15,7 @@ export default function WorkTile({
   idx,
   worksPlaying,
   setWorksPlaying,
-}: // userStats,
+}:
 IProps) {
   const { userStats } = useContext(GameContext);
   const setIsPlaying = (playing: boolean, idx: number) => {
