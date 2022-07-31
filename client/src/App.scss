@@ -260,28 +260,26 @@ button {
 .autocomplete-ac {
   width: calc(100% - 2px);
   margin: auto;
-  margin-bottom: 0.5em;
   font-size: 1.2rem;
   padding: 0.8em 0.5em;
   border-radius: 0;
-  border: 1px solid $dark;
+  border: none;
   &:focus {
-    border: 1px solid $primary;
-    outline: 1px solid $primary;
+    border: none;
+    outline: none;
   }
   &__wrapper {
-    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    margin-bottom: 0.5em;
+    border: 1.5px solid black;
   }
   &__suggestion-abs-wrapper {
     display: none;
-    position: absolute;
-    border: 1.5px solid $primary;
+    border-bottom: 1px solid $primary;
     bottom: 4em;
-    margin: 0 2em;
-    width: calc(100% - 1.25px);
     z-index: 5;
   }
   &__suggestion {

@@ -15,7 +15,7 @@ export default function AutocompleteAC({
   userInput,
   setUserInput,
   suggestions,
-  setSuggestions
+  setSuggestions,
 }: IProps) {
   const [focused, setFocused] = useState(false);
 
@@ -33,14 +33,17 @@ export default function AutocompleteAC({
   };
 
   return (
-    <div className="autocomplete-ac__wrapper">
+    <div
+      className="autocomplete-ac__wrapper"
+      style={focused ? { border: '2px solid hsl(300, 100%, 67%)' } : {}}
+    >
       <div
+        className="autocomplete-ac__suggestion-abs-wrapper"
         style={
           userInput.length && suggestions.length && focused
             ? suggestionStyles
             : {}
         }
-        className="autocomplete-ac__suggestion-abs-wrapper"
       >
         {suggestions.map((suggestion, i) => {
           return (
@@ -55,10 +58,10 @@ export default function AutocompleteAC({
         })}
       </div>
       <input
+        className="autocomplete-ac"
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         onChange={handleChange}
-        className="autocomplete-ac"
         type="text"
         placeholder="Know the composer?"
         value={userInput}
