@@ -20,7 +20,7 @@ export default function Summary() {
   const handleShare = () => {
     if (shareAlert) return;
 
-    const shareString = `#Bachle-${days(
+    const shareString = `#Bachle ${days(
       FIRST_GAME,
       GAMEDAY_ID
     )}\n🎻${tileString}${
