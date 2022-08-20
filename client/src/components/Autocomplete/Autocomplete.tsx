@@ -3,6 +3,7 @@ import Suggestion from './Suggestion';
 import makeSuggestions from './makeSuggestions';
 import SuggestionInfo from './SuggestionInfo';
 
+const SUGGESTION_LIMIT = 5;
 interface IProps {
   options: { name: string }[];
   userInput: string;
@@ -28,7 +29,7 @@ export default function AutocompleteAC({
   useEffect(() => {
     const suggestionResults = makeSuggestions(userInput, options);
     setAllResults(suggestionResults);
-    setSuggestions(suggestionResults.slice(0, 5));
+    setSuggestions(suggestionResults.slice(0, SUGGESTION_LIMIT));
   }, [userInput, options]);
 
   const suggestionStyles: any = {
@@ -65,7 +66,11 @@ export default function AutocompleteAC({
         className="autocomplete-ac__suggestion-abs-wrapper"
         style={userInput.length && focused ? suggestionStyles : {}}
       >
-        <SuggestionInfo userInput={userInput} allResults={allResults} />
+        <SuggestionInfo
+          userInput={userInput}
+          allResults={allResults}
+          limit={SUGGESTION_LIMIT}
+        />
       </div>
       <input
         className="autocomplete-ac"
