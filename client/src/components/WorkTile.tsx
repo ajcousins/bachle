@@ -8,6 +8,7 @@ interface IProps {
   idx: number;
   worksPlaying: { isPlaying: boolean }[];
   setWorksPlaying: React.Dispatch<any>;
+  summaryScreen?: boolean;
 }
 
 export default function WorkTile({
@@ -15,8 +16,8 @@ export default function WorkTile({
   idx,
   worksPlaying,
   setWorksPlaying,
-}:
-IProps) {
+  summaryScreen,
+}: IProps) {
   const { userStats } = useContext(GameContext);
   const setIsPlaying = (playing: boolean, idx: number) => {
     const worksPlayingCopy = worksPlaying.map(() => ({ isPlaying: false }));
@@ -59,9 +60,11 @@ IProps) {
   };
 
   if (!userStats) return <></>;
+  let answerTile = '';
 
-  switch (isActive(idx, userStats)) {
+  switch (isActive(idx, userStats, summaryScreen)) {
     case 'active-blank':
+      answerTile = '⬜';
       return (
         <div className="work-tile__active" onClick={handleClick}>
           <div
@@ -69,7 +72,9 @@ IProps) {
             style={worksPlaying[idx].isPlaying ? progressing : stopped}
           />
           <div className="work-tile__text">
-            <span className="skipped-text">🟩 Track {idx + 1}</span>
+            <span className="skipped-text">
+              {answerTile} Track {idx + 1}
+            </span>
             {idx === 0 && (
               <span
                 style={{
@@ -96,21 +101,29 @@ IProps) {
       );
 
     case 'active-filled':
+      answerTile = userStats.guessList[idx]?.isCorrect ? '🟩' : '🟨';
       return (
         <div className="work-tile__active" onClick={handleClick}>
+          {summaryScreen && (
+            <div className="work-tile__summary-small-heading">
+              TRACK {idx + 1} - You guessed...
+            </div>
+          )}
           <div
-            className="work-tile__active__progress-bar"
+            className={`work-tile__active__progress-bar${
+              summaryScreen ? '-summary' : ''
+            }`}
             style={worksPlaying[idx].isPlaying ? progressing : stopped}
           />
-          <div className="work-tile__text">
+          <div className={`work-tile__text${summaryScreen ? '-summary' : ''}`}>
             {userStats.guessList[idx].isSkipped ? (
               <span className="skipped-text">🟨 SKIPPED</span>
             ) : (
-              `🟨 ${userStats.guessList[idx].answer} ❌`
+              `${answerTile} ${userStats.guessList[idx].answer}`
             )}
           </div>
 
-          <BachlePlay />
+          <BachlePlay summaryScreen={summaryScreen} />
           <iframe
             allow="autoplay"
             title="widget"
@@ -127,7 +140,11 @@ IProps) {
   }
 }
 
-const isActive = (idx: number, userStats: Stat): string => {
+const isActive = (
+  idx: number,
+  userStats: Stat,
+  summaryScreen?: boolean
+): string => {
   if (!userStats.guessList.length) {
     if (idx === 0) return 'active-blank';
   }
@@ -138,6 +155,10 @@ const isActive = (idx: number, userStats: Stat): string => {
 
   if (userStats.guessList[idx]) {
     return 'active-filled';
+  }
+
+  if (summaryScreen) {
+    return 'active-blank';
   }
 
   return 'inactive';

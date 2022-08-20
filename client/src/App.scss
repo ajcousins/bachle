@@ -114,6 +114,7 @@ button {
     top: 0;
     background-color: white;
     padding: 0 0.75em;
+    z-index: 2;
   }
 }
 
@@ -128,6 +129,12 @@ button {
       background-color: $primary;
       width: 0%;
       height: 3em;
+      transition-timing-function: 'linear';
+    }
+    &__progress-bar-summary {
+      background-color: $primary;
+      width: 0%;
+      height: 4em;
       transition-timing-function: 'linear';
     }
   }
@@ -146,6 +153,22 @@ button {
     margin-left: 40px;
     color: white;
   }
+  &__text-summary {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    margin-top: 28px;
+    margin-left: 40px;
+    color: white;
+  }
+  &__summary-small-heading {
+    position: absolute;
+    color: white;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    margin-left: 8px;
+  }
 }
 
 .play-svg {
@@ -154,6 +177,15 @@ button {
   top: 0;
   left: 0;
   margin-top: 12px;
+  margin-left: 8px;
+}
+
+.play-svg-summary {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin-top: 28px;
   margin-left: 8px;
 }
 
@@ -217,14 +249,20 @@ button {
     -moz-box-shadow: -11px 10px 38px -7px rgba(0, 0, 0, 0.25);
     box-shadow: -11px 10px 38px -7px rgba(0, 0, 0, 0.25);
   }
-  &__detail {
+  &__section {
     width: 100%;
-    background-color: $dark;
+  }
+  &__detail {
+    border: 1px solid $primary;
     display: flex;
     padding: 0.8em;
     margin-bottom: 2em;
-    color: white;
-    border-radius: 0.3em;
+    color: $primary;
+    border-radius: 0.6em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    -webkit-box-shadow: inset -5px -5px 11px -1px $primary-light;
+    box-shadow: inset -5px -5px 11px -1px $primary-light;
     &__img-placeholder {
       width: 100px;
       height: 100px;

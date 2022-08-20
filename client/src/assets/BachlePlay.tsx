@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function BachlePlay() {
+interface IProps {
+  summaryScreen?: boolean;
+}
+
+export default function BachlePlay({summaryScreen}:IProps) {
   return (
     <svg
       width="24"
@@ -11,7 +15,7 @@ export default function BachlePlay() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="play-svg"
+      className={`play-svg${summaryScreen ? '-summary' : ''}`}
     >
       <polygon
         points="5 3 19 12 5 21 5 3"
