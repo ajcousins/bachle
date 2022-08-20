@@ -322,12 +322,18 @@ button {
   }
   &__suggestion {
     cursor: pointer;
-    padding: 0.5em 0.5em;
+    padding: 0.5em;
     background-color: white;
     &__highlight {
       background-color: $primary-light;
       padding: 0.2em 0;
     }
+  }
+  &__suggestion-info {
+    padding: 0.5em;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $primary;
   }
 }
 
