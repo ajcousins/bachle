@@ -14,7 +14,7 @@ export async function fetchData(
 ) {
   try {
     const game = await axios.get(
-      `https://je7nu5ny87.execute-api.us-east-1.amazonaws.com/dev/get-game-db/${gamedayId}`
+      `https://cfti7ubrbd.execute-api.us-east-1.amazonaws.com/dev/get-game-db/${gamedayId}`
     );
     return game
   } catch (err) {
